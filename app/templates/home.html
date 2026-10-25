@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS | Ubuhinzi bw'ejo hazaza</title>
+
+    <!-- Shared styles used throughout the website -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Styles specific to the home page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+
+<body>
+
+    <!-- ==================== 1. HEADER ==================== -->
+    <header class="site-header">
+        <div class="container navbar">
+
+            <!-- Website logo and name -->
+            <a href="" class="brand">
+                <span class="brand-icon">🌱</span>
+
+                <span class="brand-text">
+                    <strong>SSAS</strong>
+                    <small>Smart Summer Agriculture System</small>
+                </span>
+            </a>
+
+            <!-- Main navigation links -->
+            <nav class="nav-links" aria-label="Ibyiciro by'urubuga">
+                <a href="" class="active">Ahabanza</a>
+                <a href="#ibihingwa">Ibihingwa</a>
+                <a href="#uko-bikora">Uko bikora</a>
+                <a href="#ibyerekeye">Ibyerekeye SSAS</a>
+            </nav>
+
+            <!-- Login link for a future feature -->
+            <a href="#kwinjira" class="btn btn-small btn-primary">
+                Kwinjira
+            </a>
+
+        </div>
+    </header>
+
+
+    <!-- ==================== 2. HERO SECTION ==================== -->
+    <main>
+
+        <section class="hero">
+            <div class="container hero-content">
+
+                <!-- Main message to farmers -->
+                <div class="hero-text">
+
+                    <span class="eyebrow">
+                        ☀️ Ubuhinzi bujyanye n'ibihe by'izuba
+                    </span>
+
+                    <h1>
+                        Ubuhinzi bw'ejo hazaza
+                        <span>butanga umusaruro mwiza.</span>
+                    </h1>
+
+                    <p>
+                        Menya imbuto z'ibihingwa zikwiriye
+                        akarere kawe, usobanukirwe uko
+                        wahinga neza kandi wongere umusaruro wawe.
+                    </p>
+
+                    <!-- Main actions -->
+                    <div class="hero-actions">
+                        <a href="#ibihingwa" class="btn btn-primary">
+                            🌱 Shaka imbuto zikwiriye
+                        </a>
+
+                        <a href="#uko-bikora" class="btn btn-outline">
+                            📖 Menya uko bikora
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Decorative agriculture illustration -->
+                <div class="hero-illustration" aria-hidden="true">
+                    <span class="sun">☀️</span>
+                    <span class="plant plant-one">🌿</span>
+                    <span class="plant plant-two">🌱</span>
+                    <span class="plant plant-three">🌾</span>
+
+                    <div class="hero-message">
+                        <span>🌱</span>
+                        <p>Ubutaka bwiza, imbuto nziza, umusaruro mwiza!</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ==================== 3. KEY BENEFITS ==================== -->
+        <section class="benefits">
+            <div class="container benefits-grid">
+
+                <article class="benefit">
+                    <span class="benefit-icon">🌱</span>
+                    <div>
+                        <h3>Imbuto zikwiriye</h3>
+                        <p>Hitamo imbuto ukurikije aho uhinga.</p>
+                    </div>
+                </article>
+
+                <article class="benefit">
+                    <span class="benefit-icon">☀️</span>
+                    <div>
+                        <h3>Inama z'ubuhinzi</h3>
+                        <p>Menya uko witaho ibihingwa byawe.</p>
+                    </div>
+                </article>
+
+                <article class="benefit">
+                    <span class="benefit-icon">📍</span>
+                    <div>
+                        <h3>Akarere kawe</h3>
+                        <p>Shaka amakuru ajyanye n'aho uhinga.</p>
+                    </div>
+                </article>
+
+                <article class="benefit">
+                    <span class="benefit-icon">🤝</span>
+                    <div>
+                        <h3>Abatanga imbuto</h3>
+                        <p>Menya aho ushobora kuzishakira.</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+
+        <!-- ==================== 4. CROP VARIETIES ==================== -->
+        <section class="section crops-section" id="ibihingwa">
+            <div class="container">
+
+                <!-- Section heading -->
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">🌿 Hitamo neza</span>
+                        <h2>Ibihingwa n'imbuto zabyo</h2>
+                        <p>
+                            Tangira ushakisha ibihingwa ushaka guhinga
+                            n'ubwoko bw'imbuto wabuhinga.
+                        </p>
+                    </div>
+
+                    <a href="#uko-bikora" class="text-link">
+                        Menya byinshi →
+                    </a>
+                </div>
+
+                <!-- Individual crop cards -->
+                <div class="crop-grid">
+
+                    <article class="crop-card">
+                        <div class="crop-visual crop-maize">
+                            <span aria-hidden="true">🌽</span>
+                        </div>
+
+                        <div class="crop-info">
+                            <h3>Ibigori</h3>
+                            <p>
+                                Shaka ubwoko bw'ibigori bukwiriye
+                                aho uhinga.
+                            </p>
+                            <a href="#uko-bikora" class="btn btn-card">
+                                Reba amakuru
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="crop-card">
+                        <div class="crop-visual crop-beans">
+                            <span aria-hidden="true">🫘</span>
+                        </div>
+
+                        <div class="crop-info">
+                            <h3>Ibishyimbo</h3>
+                            <p>
+                                Menya ubwoko bw'imbuto n'inama
+                                zo kubihinga.
+                            </p>
+                            <a href="#uko-bikora" class="btn btn-card">
+                                Reba amakuru
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="crop-card">
+                        <div class="crop-visual crop-cassava">
+                            <span aria-hidden="true">🥔</span>
+                        </div>
+
+                        <div class="crop-info">
+                            <h3>Imyumbati</h3>
+                            <p>
+                                Shaka amakuru agufasha guhitamo
+                                ubwoko bukwiriye.
+                            </p>
+                            <a href="#uko-bikora" class="btn btn-card">
+                                Reba amakuru
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="crop-card">
+                        <div class="crop-visual crop-sweet-potato">
+                            <span aria-hidden="true">🍠</span>
+                        </div>
+
+                        <div class="crop-info">
+                            <h3>Ibijumba</h3>
+                            <p>
+                                Menya uko wahitamo imbuto
+                                n'uko wazitaho.
+                            </p>
+                            <a href="#uko-bikora" class="btn btn-card">
+                                Reba amakuru
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== 5. HOW SSAS WORKS ==================== -->
+        <section class="section how-section" id="uko-bikora">
+            <div class="container">
+
+                <div class="section-heading centered">
+                    <div>
+                        <span class="eyebrow">🌱 Intambwe zoroshye</span>
+                        <h2>Uko SSAS igufasha</h2>
+                        <p>
+                            Kurikiza izi ntambwe kugira ngo ubone
+                            amakuru ajyanye n'ubuhinzi bwawe.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Four steps for the farmer -->
+                <div class="steps-grid">
+
+                    <article class="step-card">
+                        <span class="step-icon">🔎</span>
+                        <span class="step-number">01</span>
+                        <h3>Shaka igihingwa</h3>
+                        <p>
+                            Hitamo igihingwa wifuza guhinga.
+                        </p>
+                    </article>
+
+                    <article class="step-card">
+                        <span class="step-icon">📍</span>
+                        <span class="step-number">02</span>
+                        <h3>Hitamo akarere</h3>
+                        <p>
+                            Garagaza akarere n'aho uhinga.
+                        </p>
+                    </article>
+
+                    <article class="step-card">
+                        <span class="step-icon">🌱</span>
+                        <span class="step-number">03</span>
+                        <h3>Reba imbuto zikwiriye</h3>
+                        <p>
+                            Sobanukirwa n'ubwoko bujyanye
+                            n'akarere kawe.
+                        </p>
+                    </article>
+
+                    <article class="step-card">
+                        <span class="step-icon">📖</span>
+                        <span class="step-number">04</span>
+                        <h3>Kurikiza inama</h3>
+                        <p>
+                            Soma amabwiriza yo guhinga
+                            no kwita ku bihingwa.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== 6. ABOUT SSAS ==================== -->
+        <section class="about-section" id="ibyerekeye">
+            <div class="container about-content">
+
+                <div class="about-icon" aria-hidden="true">
+                    🌳
+                </div>
+
+                <div class="about-text">
+                    <span class="eyebrow">Icyerekezo cyacu</span>
+
+                    <h2>Dufatanye guteza imbere ubuhinzi</h2>
+
+                    <p>
+                        SSAS igamije gufasha abahinzi kubona amakuru
+                        ajyanye n'imbuto z'ibihingwa, akarere bahingamo
+                        n'uburyo bwo kwita ku bihingwa. Intego ni ugufata
+                        ibyemezo byiza bishingiye ku makuru yizewe.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ==================== 7. FOOTER ==================== -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+
+            <a href="/" class="brand footer-brand">
+                <span class="brand-icon">🌱</span>
+
+                <span class="brand-text">
+                    <strong>SSAS</strong>
+                    <small>Smart Summer Agriculture System</small>
+                </span>
+            </a>
+
+            <p>
+                Dufatanye guteza imbere ubuhinzi burambye.
+            </p>
+
+            <p class="copyright">
+                &copy; 2026 SSAS. Uburenganzira bwose burabitswe.
+            </p>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

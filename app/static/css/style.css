@@ -1,0 +1,250 @@
+/* =====================================================
+   1. GLOBAL SETTINGS
+   Basic rules used throughout the website
+   ===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --green-dark: #174b32;
+    --green-main: #287a45;
+    --green-light: #eaf5e5;
+
+    --yellow-main: #f5c928;
+    --yellow-light: #fff5c9;
+
+    --cream: #fffdf5;
+    --white: #ffffff;
+
+    --text-main: #24382b;
+    --text-muted: #647367;
+
+    --border-color: #e4e9df;
+
+    --shadow-soft: 0 8px 24px rgba(23, 75, 50, 0.08);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: var(--text-main);
+    background-color: var(--cream);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    width: min(1120px, 92%);
+    margin-inline: auto;
+}
+
+
+/* =====================================================
+   2. SHARED BRAND
+   Website name and logo
+   ===================================================== */
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.brand-icon {
+    font-size: 2rem;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.brand-text strong {
+    color: var(--green-dark);
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.brand-text small {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+}
+
+
+/* =====================================================
+   3. SHARED BUTTONS
+   Reusable button styles for different pages
+   ===================================================== */
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 20px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+
+    font-size: 0.92rem;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    color: var(--green-dark);
+    background-color: var(--yellow-main);
+}
+
+.btn-primary:hover {
+    background-color: #e9b900;
+}
+
+.btn-outline {
+    color: var(--green-dark);
+    background-color: transparent;
+    border-color: var(--green-main);
+}
+
+.btn-outline:hover {
+    background-color: var(--green-light);
+}
+
+.btn-small {
+    padding: 9px 18px;
+    font-size: 0.85rem;
+}
+
+
+/* =====================================================
+   4. SHARED SECTION SPACING
+   General spacing and headings
+   ===================================================== */
+
+.section {
+    padding: 72px 0;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.section-heading h2 {
+    color: var(--green-dark);
+    font-size: clamp(1.7rem, 3vw, 2.35rem);
+    line-height: 1.25;
+    margin: 8px 0 12px;
+}
+
+.section-heading p {
+    color: var(--text-muted);
+    max-width: 620px;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: var(--green-main);
+    font-size: 0.88rem;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+}
+
+.text-link {
+    color: var(--green-main);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.text-link:hover {
+    color: var(--green-dark);
+}
+
+
+/* =====================================================
+   5. SHARED FOOTER
+   General footer layout and text
+   ===================================================== */
+
+.site-footer {
+    padding: 32px 0;
+    color: var(--white);
+    background-color: var(--green-dark);
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-brand .brand-text strong,
+.footer-brand .brand-text small {
+    color: var(--white);
+}
+
+.site-footer p {
+    font-size: 0.88rem;
+}
+
+.copyright {
+    width: 100%;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: #dce9dd;
+}
+
+
+/* =====================================================
+   6. SHARED RESPONSIVE RULES
+   Small adjustments for phones and tablets
+   ===================================================== */
+
+@media (max-width: 700px) {
+    .section {
+        padding: 48px 0;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .footer-content {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
