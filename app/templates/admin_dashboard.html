@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS | Ubuyobozi</title>
+
+    <!-- Shared website CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Admin dashboard CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="site-header">
+        <nav class="container navbar">
+
+            <a href="/" class="brand">
+                <span class="brand-icon">☀️</span>
+
+                <span class="brand-text">
+                    <strong>SSAS</strong>
+                    <small>Smart Summer Agriculture System</small>
+                </span>
+            </a>
+
+            <div class="nav-links">
+                <a href="/">Reba Urubuga</a>
+                <a href="/varieties">Ubwoko bw'Ibihingwa</a>
+            </div>
+
+            <a href="{{ url_for('admin.admin_logout')}}" class="btn btn-primary nav-button">
+                Sohoka
+            </a>
+
+        </nav>
+    </header>
+
+
+    <!-- ==================== ADMIN INTRODUCTION ==================== -->
+    <section class="admin-hero">
+
+        <div class="admin-hero-content">
+
+            <span class="section-tag">AHABUGENEWE UBUYOBOZI</span>
+
+            <h1>Ikaze ku buyobozi bwa SSAS</h1>
+
+            <p>
+                Hano ni ho umuyobozi azajya acunga amakuru y'ibihingwa,
+                uturere, imirenge, abatanga imbuto n'ibitekerezo
+                by'abahinzi.
+            </p>
+
+        </div>
+
+        <div class="admin-icon" aria-hidden="true">
+            🌱
+        </div>
+
+    </section>
+
+
+    <!-- ==================== DASHBOARD ==================== -->
+    <main class="admin-container">
+
+        <div class="section-heading">
+            <h2>Ibice by'ubuyobozi</h2>
+
+            <p>
+                Hitamo igice ushaka gucunga.
+            </p>
+        </div>
+
+
+        <!-- Dashboard cards -->
+        <section class="admin-grid">
+
+            <!-- Manage crops -->
+            <article class="admin-card">
+                <div class="admin-card-icon">🌾</div>
+
+                <h3>Ibihingwa</h3>
+
+                <p>
+                    Reba kandi ucunge amazina y'ibihingwa
+                    bibitswe muri SSAS.
+                </p>
+
+                <a href="#" class="admin-link">
+                    Gucunga Ibihingwa →
+                </a>
+            </article>
+
+
+            <!-- Manage varieties -->
+            <article class="admin-card">
+                <div class="admin-card-icon">🌱</div>
+
+                <h3>Ubwoko bw'Ibihingwa</h3>
+
+                <p>
+                    Ongeramo ubwoko bw'ibihingwa kandi ucunge
+                    amakuru ajyanye na bwo.
+                </p>
+
+                <a href="#" class="admin-link">
+                    Gucunga Ubwoko →
+                </a>
+            </article>
+
+
+            <!-- Manage districts and sectors -->
+            <article class="admin-card">
+                <div class="admin-card-icon">📍</div>
+
+                <h3>Uturere n'Imirenge</h3>
+
+                <p>
+                    Cunga uturere n'imirenge irimo kugira ngo
+                    abahinzi babone aho baherereye.
+                </p>
+
+                <a href="#" class="admin-link">
+                    Gucunga Ahantu →
+                </a>
+            </article>
+
+
+            <!-- Manage suppliers -->
+            <article class="admin-card">
+                <div class="admin-card-icon">🛒</div>
+
+                <h3>Abatanga Imbuto</h3>
+
+                <p>
+                    Cunga amakuru y'abatanga imbuto n'ubwoko
+                    bw'ibihingwa batanga.
+                </p>
+
+                <a href="#" class="admin-link">
+                    Gucunga Abatanga Imbuto →
+                </a>
+            </article>
+
+
+            <!-- Manage growing guides -->
+            <article class="admin-card">
+                <div class="admin-card-icon">📖</div>
+
+                <h3>Amabwiriza yo Guhinga</h3>
+
+                <p>
+                    Cunga ibisobanuro n'intambwe zo guhinga
+                    buri bwoko bw'igihingwa.
+                </p>
+
+                <a href="#" class="admin-link">
+                    Gucunga Amabwiriza →
+                </a>
+            </article>
+
+
+            <!-- Review farmer feedback -->
+            <article class="admin-card">
+                <div class="admin-card-icon">💬</div>
+
+                <h3>Ibitekerezo by'Abahinzi</h3>
+
+                <p>
+                    Soma ibitekerezo by'abahinzi kandi ubisuzume
+                    mbere yo kubikoresha mu gufata imyanzuro.
+                </p>
+
+                <a href="/feedback" class="admin-link">
+                    Reba Ibitekerezo →
+                </a>
+            </article>
+
+
+        </section>
+
+
+        <!-- Important reminder -->
+        <section class="admin-reminder">
+
+            <h3>Kwemeza amakuru y'ubuhinzi</h3>
+
+            <p>
+                Mbere yo gushyira ubwoko bw'igihingwa mu cyiciro
+                cy'ubwoko bukwiye akarere runaka, umuyobozi agomba
+                kugenzura ibimenyetso bifatika. Igitekerezo cy'umuhinzi
+                ni amakuru y'ingirakamaro, ariko si gihamya ihagije
+                yonyine yo kwemeza ko ubwoko bukwiye akarere.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="site-footer">
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+                <strong>☀️ SSAS</strong>
+
+                <p>
+                    Ikoranabuhanga rifasha abahinzi kubona amakuru
+                    ajyanye n'ubwoko bw'ibihingwa n'ubuhinzi.
+                </p>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 SSAS — Ubuyobozi.</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

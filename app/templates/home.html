@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="rw">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SSAS | Ubuhinzi bw'ejo hazaza</title>
+    <title>SSAS | Umuhinzi ugezezweho</title>
 
     <!-- Shared styles used throughout the website -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -21,7 +22,7 @@
         <div class="container navbar">
 
             <!-- Website logo and name -->
-            <a href="" class="brand">
+            <a href="{{ url_for('home.home') }}" class="brand">
                 <span class="brand-icon">🌱</span>
 
                 <span class="brand-text">
@@ -32,14 +33,25 @@
 
             <!-- Main navigation links -->
             <nav class="nav-links" aria-label="Ibyiciro by'urubuga">
-                <a href="" class="active">Ahabanza</a>
-                <a href="#ibihingwa">Ibihingwa</a>
-                <a href="#uko-bikora">Uko bikora</a>
-                <a href="#ibyerekeye">Ibyerekeye SSAS</a>
+                <a href="{{ url_for('home.home') }}" class="active">
+                    Ahabanza
+                </a>
+
+                <a href="{{ url_for('varieties.varieties') }}">
+                    Ibihingwa
+                </a>
+
+                <a href="#uko-bikora">
+                    Uko bikora
+                </a>
+
+                <a href="#ibyerekeye">
+                    Ibyerekeye SSAS
+                </a>
             </nav>
 
-            <!-- Login link for a future feature -->
-            <a href="#kwinjira" class="btn btn-small btn-primary">
+            <!-- Login link for the future admin feature -->
+            <a href="{{ url_for('admin.admin_login') }}" class="btn btn-small btn-primary">
                 Kwinjira
             </a>
 
@@ -73,13 +85,15 @@
 
                     <!-- Main actions -->
                     <div class="hero-actions">
-                        <a href="#ibihingwa" class="btn btn-primary">
+
+                        <a href="{{ url_for('varieties.varieties') }}" class="btn btn-primary">
                             🌱 Shaka imbuto zikwiriye
                         </a>
 
                         <a href="#uko-bikora" class="btn btn-outline">
                             📖 Menya uko bikora
                         </a>
+
                     </div>
 
                 </div>
@@ -156,7 +170,7 @@
                         </p>
                     </div>
 
-                    <a href="#uko-bikora" class="text-link">
+                    <a href="{{ url_for('varieties.varieties') }}" class="text-link">
                         Menya byinshi →
                     </a>
                 </div>
@@ -175,7 +189,8 @@
                                 Shaka ubwoko bw'ibigori bukwiriye
                                 aho uhinga.
                             </p>
-                            <a href="#uko-bikora" class="btn btn-card">
+
+                            <a href="{{ url_for('varieties.varieties') }}" class="btn btn-card">
                                 Reba amakuru
                             </a>
                         </div>
@@ -192,7 +207,8 @@
                                 Menya ubwoko bw'imbuto n'inama
                                 zo kubihinga.
                             </p>
-                            <a href="#uko-bikora" class="btn btn-card">
+
+                            <a href="{{ url_for('varieties.varieties') }}" class="btn btn-card">
                                 Reba amakuru
                             </a>
                         </div>
@@ -209,7 +225,8 @@
                                 Shaka amakuru agufasha guhitamo
                                 ubwoko bukwiriye.
                             </p>
-                            <a href="#uko-bikora" class="btn btn-card">
+
+                            <a href="{{ url_for('varieties.varieties') }}" class="btn btn-card">
                                 Reba amakuru
                             </a>
                         </div>
@@ -226,7 +243,8 @@
                                 Menya uko wahitamo imbuto
                                 n'uko wazitaho.
                             </p>
-                            <a href="#uko-bikora" class="btn btn-card">
+
+                            <a href="{{ url_for('varieties.varieties') }}" class="btn btn-card">
                                 Reba amakuru
                             </a>
                         </div>
@@ -329,13 +347,15 @@
     <footer class="site-footer">
         <div class="container footer-content">
 
-            <a href="/" class="brand footer-brand">
+            <a href="{{ url_for('home.home') }}" class="brand footer-brand">
+
                 <span class="brand-icon">🌱</span>
 
                 <span class="brand-text">
                     <strong>SSAS</strong>
                     <small>Smart Summer Agriculture System</small>
                 </span>
+
             </a>
 
             <p>

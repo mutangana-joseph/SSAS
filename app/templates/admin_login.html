@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS | Kwinjira mu Buyobozi</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_auth.css') }}">
+</head>
+
+<body class="admin-auth-page">
+
+    <header class="auth-header">
+        <a href="{{ url_for('home.home') }}" class="auth-brand">
+            <span class="auth-brand-icon" aria-hidden="true">☀️</span>
+            <span>
+                <strong>SSAS</strong>
+                <small>Smart Summer Agriculture System</small>
+            </span>
+        </a>
+
+        <a href="{{ url_for('home.home') }}" class="auth-home-link">
+            ← Subira ku rubuga
+        </a>
+    </header>
+
+    <main class="auth-main">
+
+        <section class="auth-illustration">
+            <span class="auth-tag">AHABUGENEWE UBUYOBOZI</span>
+
+            <div class="auth-illustration-icon" aria-hidden="true">
+                🌱
+            </div>
+
+            <h1>Murakaza neza muri SSAS</h1>
+
+            <p>
+                Injira kugira ngo ucunge amakuru y'ibihingwa,
+                uturere, abatanga imbuto n'ibitekerezo by'abahinzi.
+            </p>
+
+            <div class="auth-benefit">
+                <span aria-hidden="true">✓</span>
+                <span>Gucunga amakuru abitswe muri sisitemu</span>
+            </div>
+
+            <div class="auth-benefit">
+                <span aria-hidden="true">✓</span>
+                <span>Gusuzuma ibitekerezo by'abahinzi</span>
+            </div>
+        </section>
+
+        <section class="auth-card">
+
+            <div class="auth-card-heading">
+                <span class="auth-card-icon" aria-hidden="true">🔐</span>
+                <h2>Kwinjira</h2>
+                <p>Andika amakuru yawe kugira ngo ukomeze.</p>
+            </div>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="auth-message {{ category }}" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form action="{{ url_for('admin.admin_login') }}" method="POST" class="auth-form">
+
+                <div class="auth-form-group">
+                    <label for="admin_id">Admin ID cyangwa imeri</label>
+                    <input type="text" id="admin_id" name="admin_id" placeholder="Andika Admin ID cyangwa imeri"
+                        autocomplete="username" required>
+                </div>
+
+                <div class="auth-form-group">
+                    <label for="password">Ijambo ry'ibanga</label>
+                    <input type="password" id="password" name="password" placeholder="Andika ijambo ry'ibanga"
+                        autocomplete="current-password" required>
+                </div>
+
+                <button type="submit" class="auth-submit">
+                    Injira mu buyobozi
+                    <span aria-hidden="true">→</span>
+                </button>
+            </form>
+
+            <p class="auth-switch">
+                Nta konti ufite?
+                <a href="{{ url_for('admin.admin_signup') }}">
+                    Fungura konti
+                </a>
+            </p>
+
+            <p class="auth-security-note">
+                🔒 Ahabugenewe abayobozi ba SSAS gusa.
+            </p>
+
+        </section>
+    </main>
+
+    <footer class="auth-footer">
+        © 2026 SSAS — Ubumenyi bufasha ubuhinzi.
+    </footer>
+
+</body>
+
+</html>

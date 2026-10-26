@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <!-- ==================== 1. PAGE SETTINGS ==================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS | Shaka imbuto zikwiriye</title>
+
+    <!-- Shared styles used throughout SSAS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Styles specifically for the varieties page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/varieties.css') }}">
+</head>
+
+<body>
+
+    <!-- ==================== 2. HEADER ==================== -->
+    <header class="site-header">
+        <div class="container navbar">
+
+            <!-- SSAS logo -->
+            <a href="{{ url_for('home.home') }}" class="brand">
+                <span class="brand-icon">🌱</span>
+
+                <span class="brand-text">
+                    <strong>SSAS</strong>
+                    <small>Smart Summer Agriculture System</small>
+                </span>
+            </a>
+
+            <!-- Main navigation -->
+            <nav class="nav-links" aria-label="Ibyiciro by'urubuga">
+
+                <a href="{{ url_for('home.home') }}">
+                    Ahabanza
+                </a>
+
+                <a href="{{ url_for('varieties.varieties') }}" class="active">
+                    Ibihingwa
+                </a>
+
+                <a href="{{ url_for('home.home') }}#uko-bikora">
+                    Uko bikora
+                </a>
+
+                <a href="{{ url_for('home.home') }}#ibyerekeye">
+                    Ibyerekeye SSAS
+                </a>
+
+            </nav>
+
+            <a href="#district-selection" class="btn btn-small btn-primary">
+                Shaka imbuto
+            </a>
+
+        </div>
+    </header>
+
+
+    <!-- ==================== 3. PAGE INTRODUCTION ==================== -->
+    <main>
+
+        <section class="varieties-hero">
+            <div class="container varieties-hero-content">
+
+                <div class="varieties-hero-text">
+
+                    <span class="eyebrow">
+                        🌱 Hitamo neza, usinge umusaruro mwiza
+                    </span>
+
+                    <h1>
+                        Shaka imbuto
+                        <span>zikwiriye akarere kawe.</span>
+                    </h1>
+
+                    <p>
+                        Banza uhitemo akarere uhingamo kugira ngo
+                        umenye ubwoko bw'imbuto z'ibihingwa
+                        zibitse muri SSAS zijyanye n'ako karere.
+                    </p>
+
+                </div>
+
+                <div class="varieties-hero-decoration" aria-hidden="true">
+                    <span class="decoration-sun">☀️</span>
+                    <span class="decoration-plant">🌿</span>
+                    <span class="decoration-seed">🌱</span>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ==================== 4. DISTRICT SELECTION ==================== -->
+        <section class="district-section" id="district-selection">
+
+            <div class="container">
+
+                <div class="district-panel">
+
+                    <div class="district-heading">
+                        <span class="district-icon">📍</span>
+
+                        <div>
+                            <h2>Hitamo akarere uhingamo</h2>
+
+                            <p>
+                                Akarere uhitamo ni ko kazadufasha
+                                gushaka amakuru ajyanye n'ubuhinzi bwawe.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Submit the selected district ID to Flask -->
+                    <form class="district-form" action="{{ url_for('varieties.varieties') }}" method="GET">
+
+                        <label for="district">
+                            Akarere
+                        </label>
+
+                        <select id="district" name="district_id" required>
+
+                            <option value="">
+                                -- Hitamo akarere --
+                            </option>
+
+                            {% for district in districts %}
+
+                            <option value="{{ district.district_id }}" {% if selected_district_id==district.district_id
+                                %} selected {% endif %}>
+
+                                {{ district.district_name }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                        <button type="submit" class="btn btn-primary">
+                            🔎 Reba imbuto
+                        </button>
+
+                    </form>
+
+                    <p class="form-note">
+                        <span aria-hidden="true">ℹ️</span>
+                        Amakuru azagaragara bitewe n'akarere
+                        wahisemo n'ubwoko bubitse muri SSAS.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== 5. VARIETY RESULTS ==================== -->
+        <section class="section variety-results">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">🌾 Amakuru y'imbuto</span>
+
+                        <h2>Ubwoko bw'imbuto bubitse muri SSAS</h2>
+
+                        <p>
+                            Hitamo ubwoko ushaka kumenya,
+                            usome ibisobanuro n'amabwiriza yo kubuhinga.
+                        </p>
+                    </div>
+                </div>
+
+
+                <!-- Display the selected district -->
+                {% if selected_district %}
+
+                <h3>
+                    Akarere: {{ selected_district.district_name }}
+                </h3>
+
+                {% if varieties %}
+
+                <!-- Display varieties returned by the database -->
+                <div class="variety-grid">
+
+                    {% for variety, suitability_status, evidence_source in varieties %}
+
+                    <article class="variety-card">
+
+                        <div class="variety-info">
+
+                            <h3>
+                                {{ variety.variety_name }}
+                            </h3>
+
+                            <p>
+                                {{ variety.description or
+                                "Nta bisobanuro biraboneka kuri ubu bwoko." }}
+                            </p>
+
+                            <p>
+                                <strong>Uko buhagaze:</strong>
+                                {{ suitability_status }}
+                            </p>
+
+                            {% if evidence_source %}
+
+                            <p>
+                                <strong>Inkomoko y'amakuru:</strong>
+                                {{ evidence_source }}
+                            </p>
+
+                            {% endif %}
+
+                            <a href="{{ url_for(
+                                                'varieties.variety_detail',
+                                                variety_id=variety.variety_id
+                                            ) }}" class="btn btn-card">
+
+                                Reba amakuru →
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                    {% endfor %}
+
+                </div>
+
+                {% else %}
+
+                <!-- The district exists, but has no linked varieties -->
+                <div class="empty-state">
+
+                    <span class="empty-state-icon">🌱</span>
+
+                    <h3>
+                        Nta makuru y'ubwoko bw'imbuto araboneka
+                    </h3>
+
+                    <p>
+                        Kuri ubu, SSAS nta bwoko bw'imbuto
+                        bufitanye isano n'aka karere muri
+                        database. Ibi ntibisobanura ko nta
+                        mbuto zikwiriye zihari.
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+                {% else %}
+
+                <!-- Initial message before a district is selected -->
+                <div class="empty-state">
+
+                    <span class="empty-state-icon">🌱</span>
+
+                    <h3>Banza uhitemo akarere kawe</h3>
+
+                    <p>
+                        Amakuru y'ubwoko bw'imbuto ajyanye
+                        n'akarere wahisemo azagaragara hano.
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== 6. FARMER GUIDANCE ==================== -->
+        <section class="selection-guidance">
+
+            <div class="container guidance-content">
+
+                <div class="guidance-icon" aria-hidden="true">
+                    ☀️
+                </div>
+
+                <div>
+                    <h2>Hitamo ushingiye ku makuru yizewe</h2>
+
+                    <p>
+                        Kuba ubwoko bw'imbuto bubitse muri SSAS
+                        ntibihita bisobanura ko bwamaze kwemezwa
+                        ko bukwiriye akarere kose. Reba amakuru
+                        agaragaza uko bwagenzuwe n'uko bukwiriye
+                        aho uhinga.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==================== 7. FOOTER ==================== -->
+    <footer class="site-footer">
+
+        <div class="container footer-content">
+
+            <a href="{{ url_for('home.home') }}" class="brand footer-brand">
+
+                <span class="brand-icon">🌱</span>
+
+                <span class="brand-text">
+                    <strong>SSAS</strong>
+                    <small>Smart Summer Agriculture System</small>
+                </span>
+
+            </a>
+
+            <p>
+                Dufatanye guteza imbere ubuhinzi burambye.
+            </p>
+
+            <p class="copyright">
+                &copy; 2026 SSAS. Uburenganzira bwose burabitswe.
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

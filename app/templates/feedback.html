@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS | Ibitekerezo by'Abahinzi</title>
+
+    <!-- Shared website CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Feedback page CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/feedback.css') }}">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="container navbar">
+
+            <a href="/" class="brand">
+                <span class="brand-icon">☀️</span>
+
+                <span class="brand-text">
+                    <strong>SSAS</strong>
+                    <small>Smart Summer Agriculture System</small>
+                </span>
+            </a>
+
+            <div class="nav-links">
+                <a href="/">Ahabanza</a>
+                <a href="/varieties">Ubwoko bw'Ibihingwa</a>
+                <a href="/#how-it-works">Uko Bikora</a>
+                <a href="/#about">Abo Turi Bo</a>
+            </div>
+
+            <a href="/varieties" class="btn btn-primary nav-button">
+                Reba Ibihingwa
+            </a>
+
+        </nav>
+    </header>
+
+
+    <!-- Page introduction -->
+    <section class="feedback-hero">
+
+        <div class="feedback-hero-content">
+
+            <a href="/varieties" class="back-link">
+                ← Subira ku bwoko bw'ibihingwa
+            </a>
+
+            <h1>Sangiza abandi ubunararibonye bwawe mu buhinzi</h1>
+
+            <p>
+                Ibyo abahinzi bahura na byo mu mirima yabo bishobora
+                gufasha abandi gusobanukirwa neza n'ubwoko bw'ibihingwa.
+                Tanga igitekerezo cyawe hano.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Main content -->
+    <main class="feedback-container">
+
+        <!-- Feedback form -->
+        <section class="feedback-form-section">
+
+            <div class="section-heading">
+                <h2>Tanga igitekerezo cyawe</h2>
+
+                <p>
+                    Uzuza amakuru akurikira uko ushoboye.
+                    Andika ibyo wiboneye mu murima wawe.
+                </p>
+            </div>
+
+            <form action="{{ url_for('feedback.feedback', variety_id=variety_id) }}" method="POST" class="feedback-form">
+
+                <!-- Farmer name -->
+                <div class="form-group">
+                    <label for="farmer_name">Amazina yawe</label>
+
+                    <input type="text" id="farmer_name" name="farmer_name" placeholder="Andika amazina yawe">
+                </div>
+
+                <!-- District -->
+                <div class="form-group">
+                    <label for="district">Akarere wahinzemo</label>
+                
+                    <select id="district" name="district_id" required>
+                        <option value="">-- Hitamo akarere --</option>
+                
+                        {% for district in districts %}
+                        <option value="{{ district.district_id }}">
+                            {{ district.district_name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <!-- Sector -->
+                <div class="form-group">
+                    <label for="sector">Umurenge wahinzemo</label>
+                
+                    <select id="sector" name="sector_id" required disabled>
+                        <option value="">-- Banza uhitemo akarere --</option>
+                    </select>
+                
+                    <small id="sector-message" aria-live="polite">
+                        Hitamo akarere kugira ngo ubone imirenge yako.
+                    </small>
+                </div>
+
+
+                <!-- Crop variety -->
+                <div class="form-group">
+                    <label for="variety">Ubwoko bw'igihingwa wahinze</label>
+
+                    <select id="variety" name="variety" required>
+                        <option value="">-- Hitamo ubwoko --</option>
+                        {% for crop in crops %}
+                        <option value="example-beans">
+                            {{ crop.crop_name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Farming experience -->
+                <div class="form-group">
+                    <label for="experience">Ubunararibonye bwawe</label>
+
+                    <select id="experience" name="experience" required>
+                        <option value="">-- Hitamo igisubizo --</option>
+                        <option value="good">Byagenze neza</option>
+                        <option value="average">Byagenze gereranyije</option>
+                        <option value="poor">Byagenze nabi</option>
+                        <option value="not_harvested">
+                            Sindasarura
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Feedback message -->
+                <div class="form-group">
+                    <label for="message">Sobanura ibyo wiboneye</label>
+
+                    <textarea id="message" name="message" rows="6"
+                        placeholder="Andika uko igihingwa cyakuze, ibibazo wahuye na byo, cyangwa ibindi wifuza gusangiza abandi..."
+                        required></textarea>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary">
+                    Ohereza Igitekerezo
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Important information -->
+        <section class="feedback-note">
+
+            <div class="note-icon" aria-hidden="true">ℹ️</div>
+
+            <div>
+                <h3>Impamvu igitekerezo cyawe ari ingenzi</h3>
+
+                <p>
+                    Ubunararibonye bw'abahinzi bushobora gufasha
+                    kumenya ibibazo n'amahirwe yo guhinga mu turere
+                    dutandukanye. Icyakora, igitekerezo cy'umuhinzi
+                    kimwe nticyemeza ko ubwoko bw'igihingwa bukwiriye
+                    akarere kose. Amakuru agomba kugenzurwa no
+                    kugereranywa n'ibindi bimenyetso.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+                <strong>☀️ SSAS</strong>
+
+                <p>
+                    Ikoranabuhanga rifasha abahinzi kubona amakuru
+                    ajyanye n'ubwoko bw'ibihingwa n'ubuhinzi.
+                </p>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 SSAS — Ubumenyi bufasha ubuhinzi.</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script>
+        const districtSelect = document.getElementById("district");
+        const sectorSelect = document.getElementById("sector");
+        const sectorMessage = document.getElementById("sector-message");
+
+        districtSelect.addEventListener("change", async function () {
+            const districtId = this.value;
+
+            // Clear old sectors whenever the district changes.
+            sectorSelect.innerHTML =
+                '<option value="">-- Hitamo umurenge --</option>';
+
+            sectorSelect.disabled = true;
+
+            if (!districtId) {
+                sectorMessage.textContent =
+                    "Hitamo akarere kugira ngo ubone imirenge yako.";
+                sectorSelect.innerHTML =
+                    '<option value="">-- Banza uhitemo akarere --</option>';
+                return;
+            }
+
+            sectorMessage.textContent = "Turimo gushaka imirenge...";
+
+            try {
+                const response = await fetch(
+                    `/feedback/sectors/${encodeURIComponent(districtId)}`
+                );
+
+                if (!response.ok) {
+                    throw new Error("Sectors could not be loaded.");
+                }
+
+                const sectors = await response.json();
+
+                if (sectors.length === 0) {
+                    sectorSelect.innerHTML =
+                        '<option value="">Nta mirenge yabonetse</option>';
+
+                    sectorMessage.textContent =
+                        "Nta mirenge ibonetse muri aka karere.";
+                    return;
+                }
+
+                sectors.forEach(function (sector) {
+                    const option = document.createElement("option");
+
+                    option.value = sector.sector_id;
+                    option.textContent = sector.sector_name;
+
+                    sectorSelect.appendChild(option);
+                });
+
+                sectorSelect.disabled = false;
+                sectorMessage.textContent =
+                    "Hitamo umurenge wahinzemo.";
+
+            } catch (error) {
+                sectorMessage.textContent =
+                    "Imirenge ntibashije kuboneka. Ongera ugerageze.";
+
+                console.error(error);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

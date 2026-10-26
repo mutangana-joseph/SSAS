@@ -1,0 +1,7 @@
+
+venv/
+insert_data/
+.env
+__pycache__/
+*.py[cod]
+test.py

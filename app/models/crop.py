@@ -1,5 +1,9 @@
 
-class Crop:
-    def __init__(self, crop_id, crop_name):
-        self.crop_id = crop_id
-        self.crop_name = crop_name
+from app.extensions import db
+
+
+class Crop(db.Model):
+    __tablename__ = "crops"
+
+    crop_id = db.Column(db.String(10), primary_key=True)
+    crop_name = db.Column(db.String(100), nullable=False)

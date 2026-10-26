@@ -1,6 +1,19 @@
+from app.extensions import db
 
-class SupplierVariety:
-    def __init__(self, supplier_id, variety_id, availability):
-        self.supplier_id = supplier_id
-        self.variety_id = variety_id
-        self.availability = availability
+
+class SupplierVariety(db.Model):
+    __tablename__ = "supplier_varieties"
+
+    supplier_id = db.Column(
+        db.String(10),
+        db.ForeignKey("suppliers.supplier_id"),
+        primary_key=True
+    )
+
+    variety_id = db.Column(
+        db.String(10),
+        db.ForeignKey("varieties.variety_id"),
+        primary_key=True
+    )
+
+    availability = db.Column(db.Boolean, nullable=False, default=True)

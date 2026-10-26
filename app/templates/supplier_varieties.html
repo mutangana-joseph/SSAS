@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS | Abatanga imbuto</title>
+
+    <!-- Shared styles used throughout SSAS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Styles specific to this page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/supplier_varieties.css') }}">
+</head>
+
+<body>
+
+    <!-- ==================== 1. HEADER ==================== -->
+    <header class="site-header">
+        <div class="container navbar">
+
+            <!-- Website logo -->
+            <a href="{{ url_for('home.home') }}" class="brand">
+                <span class="brand-icon">🌱</span>
+
+                <span class="brand-text">
+                    <strong>SSAS</strong>
+                    <small>Smart Summer Agriculture System</small>
+                </span>
+            </a>
+
+            <!-- Main navigation -->
+            <nav class="nav-links" aria-label="Ibyiciro by'urubuga">
+                <a href="{{ url_for('home.home') }}">Ahabanza</a>
+                <a href="{{ url_for('varieties.varieties') }}">Ibihingwa</a>
+                <a href="{{ url_for('home.home') }}#ibyerekeye">
+                    Ibyerekeye SSAS
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- ==================== 2. MAIN CONTENT ==================== -->
+    <main>
+
+        <!-- Page introduction -->
+        <section class="supplier-hero">
+            <div class="container">
+
+                <span class="eyebrow">🤝 Abafatanyabikorwa b'abahinzi</span>
+
+                <h1>Shaka aho wabona imbuto</h1>
+
+                <p>
+                    Reba abatanga imbuto z'ubwoko wahisemo
+                    kugira ngo umenye aho ushobora kuzishakira.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- ==================== 3. SUPPLIER RESULTS ==================== -->
+        <section class="section supplier-section">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Abatanga imbuto z'ubu bwoko</h2>
+
+                        <p>
+                            Hitamo aho ushobora gushakira imbuto
+                            zijyanye n'ubwoko wahisemo.
+                        </p>
+                    </div>
+                </div>
+
+
+                <!-- Selected variety information -->
+                <div class="selected-variety">
+                    <span aria-hidden="true">🌱</span>
+
+                    <div>
+                        <h3>Ubwoko wahisemo</h3>
+
+                        <p>
+                            Nimero y'ubwoko:
+                            <strong>{{ variety_id }}</strong>
+                        </p>
+                    </div>
+                </div>
+
+
+                <!-- Supplier cards will be populated from the database -->
+                {% if suppliers %}
+
+                <div class="supplier-grid">
+
+                    {% for supplier in suppliers %}
+
+                    <article class="supplier-card">
+
+                        <div class="supplier-icon" aria-hidden="true">
+                            🤝
+                        </div>
+
+                        <div class="supplier-info">
+
+                            <h3>{{ supplier.supplier_name }}</h3>
+
+                            <p>
+                                <strong>Aho aherereye:</strong>
+                                {{ supplier.sector.sector_name }}
+                            </p>
+
+                            <p>
+                                <strong>Telefoni:</strong>
+                                {{ supplier.phone }}
+                            </p>
+
+                            {% if supplier.is_available %}
+                            <span class="availability available">
+                                Imbuto zirahari
+                            </span>
+                            {% else %}
+                            <span class="availability unavailable">
+                                Imbuto ntizihari ubu
+                            </span>
+                            {% endif %}
+
+                            <a href="{{ url_for(
+                                            'feedback.feedback',
+                                            variety_id=variety_id
+                                        ) }}" class="btn btn-card">
+                                Tanga igitekerezo
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                    {% endfor %}
+
+                </div>
+
+                {% else %}
+
+                <!-- Message displayed when no supplier data is available -->
+                <div class="empty-state">
+
+                    <span class="empty-icon" aria-hidden="true">🔎</span>
+
+                    <h3>Nta mutanga mbuto uraboneka</h3>
+
+                    <p>
+                        Nta makuru y'abatanga imbuto ahari kuri ubu bwoko
+                        cyangwa ayo makuru ntarashyirwamo.
+                        Ongera ugerageze nyuma.
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- Return navigation -->
+                <div class="supplier-actions">
+
+                    <a href="{{ url_for('varieties.varieties') }}" class="btn btn-outline">
+                        ← Subira ku bwoko bw'imbuto
+                    </a>
+
+                    <a href="{{ url_for('home.home') }}" class="text-link">
+                        Subira ahabanza
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ==================== 4. FOOTER ==================== -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+
+            <a href="{{ url_for('home.home') }}" class="brand footer-brand">
+
+                <span class="brand-icon">🌱</span>
+
+                <span class="brand-text">
+                    <strong>SSAS</strong>
+                    <small>Smart Summer Agriculture System</small>
+                </span>
+
+            </a>
+
+            <p>Dufatanye guteza imbere ubuhinzi burambye.</p>
+
+            <p class="copyright">
+                &copy; 2026 SSAS. Uburenganzira bwose burabitswe.
+            </p>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

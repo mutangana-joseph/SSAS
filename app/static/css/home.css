@@ -67,10 +67,8 @@
     left: -5%;
     right: -5%;
     bottom: -65px;
-
     height: 110px;
     border-radius: 50% 50% 0 0;
-
     background-color: rgba(245, 201, 40, 0.17);
 }
 
@@ -139,7 +137,6 @@
     position: absolute;
     top: 18px;
     right: 34px;
-
     font-size: 4.5rem;
     line-height: 1;
 

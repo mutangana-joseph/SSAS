@@ -1,0 +1,483 @@
+/* =========================================================
+   1. PAGE-WIDE SETTINGS
+   ========================================================= */
+
+.detail-container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+.detail-hero,
+.suitability-section,
+.growing-guide-section,
+.farmer-actions-section {
+    padding: 55px 0;
+}
+
+.section-tag {
+    display: inline-block;
+    color: #64833c;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+}
+
+
+/* =========================================================
+   2. PAGE INTRODUCTION / HERO
+   ========================================================= */
+
+.detail-hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fff8d8, #f0f7df);
+    padding: 55px max(4%, calc((100% - 1100px) / 2)) 65px;
+}
+
+.detail-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+}
+
+.back-link {
+    display: inline-block;
+    color: #496b2d;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.detail-hero h1 {
+    color: #294c2c;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.detail-hero p {
+    color: #52634c;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 650px;
+}
+
+.detail-hero-decoration {
+    position: absolute;
+    right: 7%;
+    bottom: 20px;
+    font-size: clamp(3rem, 8vw, 6rem);
+    opacity: 0.65;
+}
+
+
+/* =========================================================
+   3. VARIETY OVERVIEW CARD
+   ========================================================= */
+
+.variety-overview {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: #ffffff;
+    border: 1px solid #e4ecd9;
+    border-radius: 22px;
+    padding: 35px;
+    margin-top: 45px;
+    box-shadow: 0 10px 30px rgba(45, 76, 39, 0.07);
+}
+
+.crop-illustration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 150px;
+    height: 150px;
+    background: #f0f7df;
+    border-radius: 20px;
+    font-size: 5rem;
+}
+
+.variety-overview-content {
+    flex: 1;
+}
+
+.variety-overview h2 {
+    color: #294c2c;
+    font-size: 2.2rem;
+    margin-bottom: 6px;
+}
+
+.variety-overview h3 {
+    color: #668246;
+    font-size: 1.15rem;
+    margin-bottom: 15px;
+}
+
+.variety-overview p {
+    color: #586354;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.variety-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.variety-meta span {
+    background: #f5f8ef;
+    color: #43583b;
+    padding: 9px 13px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   4. SECTION HEADINGS
+   ========================================================= */
+
+.section-heading {
+    max-width: 720px;
+    margin-bottom: 30px;
+}
+
+.section-heading h2 {
+    color: #294c2c;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    line-height: 1.3;
+    margin-bottom: 12px;
+}
+
+.section-heading p {
+    color: #66705f;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   5. SUITABILITY STATUS CARD
+   ========================================================= */
+
+.suitability-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    padding: 30px;
+    background: #fff9e7;
+    border: 1px solid #f0dfaa;
+    border-left: 6px solid #d8a72b;
+    border-radius: 16px;
+}
+
+.status-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 55px;
+    height: 55px;
+    background: #ffedb8;
+    border-radius: 50%;
+    font-size: 1.7rem;
+}
+
+.status-content {
+    flex: 1;
+}
+
+.status-label {
+    color: #8a6b18;
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status-content h3 {
+    color: #735719;
+    font-size: 1.5rem;
+    margin: 8px 0 12px;
+}
+
+.status-content p {
+    color: #665d46;
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+.evidence-note {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    color: #665d46;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   6. GROWING GUIDE STEPS
+   ========================================================= */
+
+.guide-list {
+    display: grid;
+    gap: 18px;
+}
+
+.guide-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    padding: 25px;
+    background: #ffffff;
+    border: 1px solid #e4ecd9;
+    border-radius: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.guide-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(45, 76, 39, 0.07);
+}
+
+.guide-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: #e9f2d8;
+    color: #45692e;
+    border-radius: 12px;
+    font-weight: 800;
+}
+
+.guide-content {
+    flex: 1;
+}
+
+.guide-content h3 {
+    color: #294c2c;
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+}
+
+.guide-content p {
+    color: #66705f;
+    line-height: 1.8;
+}
+
+.guide-icon {
+    font-size: 2rem;
+}
+
+.guide-disclaimer {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 25px;
+    padding: 20px;
+    background: #f4f6f0;
+    border-radius: 12px;
+}
+
+.guide-disclaimer>span {
+    font-size: 1.3rem;
+}
+
+.guide-disclaimer p {
+    color: #56634e;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   7. FARMER ACTION CARDS
+   ========================================================= */
+
+.action-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.action-card {
+    padding: 30px;
+    background: #ffffff;
+    border: 1px solid #e4ecd9;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(45, 76, 39, 0.05);
+}
+
+.action-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: #f0f7df;
+    border-radius: 15px;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.action-card h3 {
+    color: #294c2c;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
+
+.action-card p {
+    color: #66705f;
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+.action-card .btn {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+
+/* =========================================================
+   8. FOOTER ADJUSTMENTS
+   ========================================================= */
+
+.footer-content {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+.footer-brand p {
+    max-width: 550px;
+    line-height: 1.8;
+}
+
+.footer-bottom {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+
+
+/* =========================================================
+   9. RESPONSIVE DESIGN — TABLETS
+   ========================================================= */
+
+
+
+@media (max-width: 768px) {
+
+    .detail-hero {
+        padding: 40px 5%;
+    }
+
+    .detail-hero-decoration {
+        right: 4%;
+        bottom: 5px;
+        opacity: 0.35;
+    }
+
+    .variety-overview {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px;
+    }
+
+    .crop-illustration {
+        width: 110px;
+        height: 110px;
+        font-size: 3.8rem;
+    }
+
+    .suitability-card {
+        padding: 22px;
+    }
+
+    .action-cards {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   10. RESPONSIVE DESIGN — MOBILE PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .detail-hero,
+    .suitability-section,
+    .growing-guide-section,
+    .farmer-actions-section {
+        padding-top: 35px;
+        padding-bottom: 35px;
+    }
+
+    .variety-overview {
+        padding: 20px;
+    }
+
+    .variety-overview h2 {
+        font-size: 1.8rem;
+    }
+
+    .variety-meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .suitability-card {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .guide-card {
+        gap: 14px;
+        padding: 18px;
+    }
+
+    .guide-number {
+        width: 40px;
+        height: 40px;
+    }
+
+    .guide-icon {
+        display: none;
+    }
+
+    .action-card {
+        padding: 22px;
+    }
+
+}
+
+
+/* =========================================================
+   11. ACCESSIBILITY — REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .guide-card {
+        transition: none;
+    }
+
+    .guide-card:hover {
+        transform: none;
+    }
+
+}

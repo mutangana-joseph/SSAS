@@ -1,0 +1,433 @@
+/* =====================================================
+   1. PAGE INTRODUCTION
+   Hero section at the top of the varieties page
+   ===================================================== */
+
+.varieties-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 60px 0;
+    background:
+        radial-gradient(circle at 85% 30%,
+            rgba(245, 201, 40, 0.35),
+            transparent 20%),
+        linear-gradient(115deg,
+            #fff8d9,
+            #edf6e5);
+}
+
+.varieties-hero-content {
+    display: grid;
+    grid-template-columns: 1.5fr 0.5fr;
+    align-items: center;
+    gap: 32px;
+}
+
+.varieties-hero-text h1 {
+    max-width: 700px;
+    margin: 16px 0;
+
+    color: var(--green-dark);
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    line-height: 1.15;
+}
+
+.varieties-hero-text h1 span {
+    color: var(--green-main);
+}
+
+.varieties-hero-text p {
+    max-width: 620px;
+    color: var(--text-muted);
+    font-size: 1.02rem;
+}
+
+
+/* =====================================================
+   2. HERO DECORATIONS
+   Decorative sun and plants
+   ===================================================== */
+
+.varieties-hero-decoration {
+    position: relative;
+    min-height: 220px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.45);
+}
+
+.decoration-sun {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 4rem;
+}
+
+.decoration-plant {
+    font-size: 6rem;
+    transform: rotate(-12deg);
+}
+
+.decoration-seed {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    font-size: 3rem;
+}
+
+
+/* =====================================================
+   3. DISTRICT SELECTION SECTION
+   Panel containing the district form
+   ===================================================== */
+
+.district-section {
+    position: relative;
+    z-index: 2;
+    margin-top: -24px;
+}
+
+.district-panel {
+    padding: 32px;
+    border: 1px solid var(--border-color);
+    border-radius: 22px;
+    background-color: var(--white);
+    box-shadow: var(--shadow-soft);
+}
+
+.district-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+
+    margin-bottom: 24px;
+}
+
+.district-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+    background-color: var(--yellow-light);
+    font-size: 1.7rem;
+}
+
+.district-heading h2 {
+    margin-bottom: 6px;
+    color: var(--green-dark);
+    font-size: 1.4rem;
+}
+
+.district-heading p {
+    color: var(--text-muted);
+}
+
+
+/* =====================================================
+   4. DISTRICT FORM
+   Label, dropdown, and submit button
+   ===================================================== */
+
+.district-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 16px;
+}
+
+.district-form label {
+    grid-column: 1 / -1;
+    margin-bottom: -8px;
+
+    color: var(--green-dark);
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.district-form select {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+
+    border: 1px solid #cbd8cb;
+    border-radius: 10px;
+
+    background-color: var(--white);
+    color: var(--text-main);
+    font: inherit;
+}
+
+.district-form select:focus {
+    outline: 3px solid rgba(40, 122, 69, 0.18);
+    border-color: var(--green-main);
+}
+
+.district-form button {
+    min-height: 48px;
+}
+
+.form-note {
+    margin-top: 18px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+
+/* =====================================================
+   5. VARIETY RESULTS
+   Heading and background for the results area
+   ===================================================== */
+
+.variety-results {
+    min-height: 330px;
+    background-color: var(--cream);
+}
+
+/* =========================================
+   VARIETY RESULTS GRID
+   Organises varieties into responsive cards
+========================================= */
+
+.variety-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 28px;
+    align-items: stretch;
+}
+
+
+/* =========================================
+   INDIVIDUAL VARIETY CARD
+========================================= */
+
+.variety-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background-color: #fffdf7;
+    border: 1px solid #e7e0ce;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(60, 70, 35, 0.07);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.variety-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 9px 22px rgba(60, 70, 35, 0.13);
+}
+
+
+/* =========================================
+   VARIETY INFORMATION
+========================================= */
+
+.variety-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    padding: 22px;
+    gap: 12px;
+}
+
+.variety-info h3 {
+    margin: 0;
+    color: #344b27;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.variety-info p {
+    margin: 0;
+    color: #555b50;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+/* Give the suitability information a clear distinction. */
+.variety-info p strong {
+    color: #344b27;
+}
+
+/* Keep the details link aligned at the bottom of each card. */
+.variety-info .btn-card {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background-color: #e6b943;
+    color: #302b1b;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.variety-info .btn-card:hover {
+    background-color: #d5a52d;
+}
+
+.variety-info a{
+    display: flex;
+    
+    
+}
+
+
+
+/* =====================================================
+   6. EMPTY STATE
+   Message shown before varieties are loaded
+   ===================================================== */
+
+.empty-state {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 40px 24px;
+
+    text-align: center;
+
+    border: 1px dashed #c9d8c7;
+    border-radius: 20px;
+
+    background-color: #f5f9ef;
+}
+
+.empty-state-icon {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 3rem;
+}
+
+.empty-state h3 {
+    margin-bottom: 10px;
+    color: var(--green-dark);
+    font-size: 1.25rem;
+}
+
+.empty-state p {
+    color: var(--text-muted);
+}
+
+
+/* =====================================================
+   7. FARMER GUIDANCE
+   Reminder about evidence and suitability
+   ===================================================== */
+
+.selection-guidance {
+    padding: 42px 0;
+    background-color: var(--yellow-light);
+}
+
+.guidance-content {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.guidance-icon {
+    width: 76px;
+    height: 76px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+    background-color: var(--white);
+    font-size: 2.8rem;
+}
+
+.guidance-content h2 {
+    margin-bottom: 10px;
+    color: var(--green-dark);
+    font-size: 1.5rem;
+}
+
+.guidance-content p {
+    max-width: 850px;
+    color: var(--text-muted);
+}
+
+/* =========================================
+   RESPONSIVE GRID
+========================================= */
+
+@media (max-width: 1000px) {
+    .variety-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+}
+
+/* =====================================================
+   8. RESPONSIVE DESIGN
+   Adapt the page for tablets and phones
+   ===================================================== */
+
+@media (max-width: 800px) {
+    .varieties-hero-content {
+        grid-template-columns: 1fr;
+    }
+
+    .varieties-hero-decoration {
+        min-height: 160px;
+    }
+
+    .district-panel {
+        padding: 24px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .varieties-hero {
+        padding: 44px 0;
+    }
+
+    .varieties-hero-text h1 {
+        font-size: 2.25rem;
+    }
+
+    .district-form {
+        grid-template-columns: 1fr;
+    }
+
+    .district-form label {
+        grid-column: auto;
+    }
+
+    .district-form button {
+        width: 100%;
+    }
+
+    .district-heading {
+        gap: 12px;
+    }
+
+    .guidance-content {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .variety-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .variety-info {
+        padding: 18px;
+    }
+}

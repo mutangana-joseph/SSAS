@@ -1,5 +1,8 @@
+from app.extensions import db
 
-class District:
-    def __init__(self, district_id, district_name):
-        self.district_id = district_id
-        self.district_name = district_name
+
+class District(db.Model):
+    __tablename__ = "districts"
+
+    district_id = db.Column(db.String(10), primary_key=True)
+    district_name = db.Column(db.String(100), nullable=False)

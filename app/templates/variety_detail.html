@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS | Ibisobanuro by'Ubwoko bw'Igihingwa</title>
+
+    <!-- Shared CSS used across the website -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- CSS specific to the variety details page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variety_detail.css') }}">
+</head>
+
+<body>
+
+    <!-- ==================== HEADER / NAVIGATION ==================== -->
+    <header class="site-header">
+        <nav class="container navbar">
+
+            <a href="/" class="brand">
+                <span class="brand-icon">☀️</span>
+
+                <span class="brand-text">
+                    <strong>SSAS</strong>
+                    <small>Smart Summer Agriculture System</small>
+                </span>
+            </a>
+
+            <div class="nav-links">
+                <a href="/">Ahabanza</a>
+                <a href="/varieties" class="active">Ubwoko bw'Ibihingwa</a>
+                <a href="/#how-it-works">Uko Bikora</a>
+                <a href="/#about">Abo Turi Bo</a>
+            </div>
+
+            <a href="/varieties" class="btn btn-primary nav-button">
+                Hitamo Akarere
+            </a>
+
+        </nav>
+    </header>
+
+
+    <!-- ==================== PAGE INTRODUCTION ==================== -->
+    <section class="detail-hero">
+
+        <div class="detail-hero-content">
+
+            <a href="/varieties" class="back-link">
+                ← Subira ku bwoko bw'ibihingwa
+            </a>
+
+            <span class="eyebrow">MENYA IGIHINGWA CYAWE</span>
+
+            <h1>
+                Menya byinshi ku bwoko bw'igihingwa
+            </h1>
+
+            <p>
+                Hano usanga ibisobanuro by'igihingwa, amakuru ajyanye
+                n'uko gishobora guhingwa mu karere kawe, n'uburyo
+                bwo kubona abagurisha imbuto cyangwa ibindi bikoresho.
+            </p>
+
+        </div>
+
+        <div class="detail-hero-decoration" aria-hidden="true">
+            ☀️ 🌿
+        </div>
+
+    </section>
+
+
+    <!-- ==================== MAIN VARIETY INFORMATION ==================== -->
+    <main class="detail-container">
+
+        <!-- Variety identity card -->
+        <section class="variety-overview">
+
+            <div class="crop-illustration" aria-hidden="true">
+                🌱
+            </div>
+
+            <div class="variety-overview-content">
+
+                <span class="section-tag">IGIHINGWA</span>
+
+                <h2>Ibishyimbo</h2>
+
+                <h3>Ubwoko bw'ibishyimbo (urugero)</h3>
+
+                <p>
+                    Ubu ni urugero rw'ubwoko bw'ibishyimbo bwashyizwe
+                    muri SSAS kugira ngo tugaragaze uko amakuru y'ubwoko
+                    bw'igihingwa azajya agaragara. Ibisobanuro nyakuri
+                    bizashyirwamo nyuma yo kubona amakuru yizewe.
+                </p>
+
+                <div class="variety-meta">
+                    <span>🌾 Igihingwa: Ibishyimbo</span>
+                    <span>📍 Akarere: Kazatoranywa</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== SUITABILITY STATUS ==================== -->
+        <section class="suitability-section">
+
+            <div class="section-heading">
+                <span class="section-tag">AMAKURU Y'ISUZUMA</span>
+
+                <h2>Ese ubu bwoko bukwiranye n'akarere kawe?</h2>
+
+                <p>
+                    Reba amakuru y'isuzuma mbere yo gufata icyemezo
+                    cyo guhinga ubu bwoko.
+                </p>
+            </div>
+
+            <div class="suitability-card">
+
+                <div class="status-icon" aria-hidden="true">
+                    🔎
+                </div>
+
+                <div class="status-content">
+
+                    <span class="status-label">
+                        Imiterere y'isuzuma
+                    </span>
+
+                    <h3>Buracyasuzumwa</h3>
+
+                    <p>
+                        Nta mwanzuro wizewe urashyirwa hano werekana
+                        ko ubu bwoko bukwiriye cyangwa budakwiriye
+                        akarere runaka. Hakenewe amakuru n'ibimenyetso
+                        byizewe mbere yo gutanga umwanzuro.
+                    </p>
+
+                    <div class="evidence-note">
+                        <strong>Ibimenyetso:</strong>
+                        Amakuru y'isuzuma azongerwamo igihe azaba
+                        yabonetse kandi yagenzuwe.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== GROWING GUIDE ==================== -->
+        <section class="growing-guide-section">
+
+            <div class="section-heading">
+                <span class="section-tag">UBUMENYI MU BUHINZI</span>
+
+                <h2>Amabwiriza yo guhinga</h2>
+
+                <p>
+                    Iki gice kizajya kigaragaza intambwe zo guhinga
+                    ubu bwoko, uhereye ku gutegura ubutaka kugeza
+                    igihe cyo gusarura.
+                </p>
+            </div>
+
+            <div class="guide-list">
+
+                <!-- Growing guide step 1 -->
+                <article class="guide-card">
+
+                    <div class="guide-number">01</div>
+
+                    <div class="guide-content">
+                        <h3>Gutegura ubutaka</h3>
+
+                        <p>
+                            Amabwiriza yizewe ajyanye no gutegura
+                            ubutaka bw'ubu bwoko azashyirwa hano.
+                        </p>
+                    </div>
+
+                    <span class="guide-icon" aria-hidden="true">
+                        🌍
+                    </span>
+
+                </article>
+
+
+                <!-- Growing guide step 2 -->
+                <article class="guide-card">
+
+                    <div class="guide-number">02</div>
+
+                    <div class="guide-content">
+                        <h3>Gutera imbuto</h3>
+
+                        <p>
+                            Igihe cyo gutera, intera hagati y'imirongo
+                            n'iy'ibihingwa bizongerwamo hashingiwe
+                            ku mabwiriza yemewe y'ubu bwoko.
+                        </p>
+                    </div>
+
+                    <span class="guide-icon" aria-hidden="true">
+                        🌱
+                    </span>
+
+                </article>
+
+
+                <!-- Growing guide step 3 -->
+                <article class="guide-card">
+
+                    <div class="guide-number">03</div>
+
+                    <div class="guide-content">
+                        <h3>Kwita ku bihingwa</h3>
+
+                        <p>
+                            Amakuru ajyanye no kuhira, kurwanya
+                            indwara n'udukoko, no kwita ku bihingwa
+                            azashyirwa hano.
+                        </p>
+                    </div>
+
+                    <span class="guide-icon" aria-hidden="true">
+                        💧
+                    </span>
+
+                </article>
+
+
+                <!-- Growing guide step 4 -->
+                <article class="guide-card">
+
+                    <div class="guide-number">04</div>
+
+                    <div class="guide-content">
+                        <h3>Gusarura</h3>
+
+                        <p>
+                            Igihe cyo gusarura n'ibimenyetso byerekana
+                            ko igihingwa gikuze neza bizongerwamo
+                            hashingiwe ku makuru yizewe.
+                        </p>
+                    </div>
+
+                    <span class="guide-icon" aria-hidden="true">
+                        🧺
+                    </span>
+
+                </article>
+
+            </div>
+
+            <div class="guide-disclaimer">
+                <span aria-hidden="true">ℹ️</span>
+
+                <p>
+                    <strong>Icyitonderwa:</strong>
+                    Aya makuru ni urugero rw'imiterere y'urubuga.
+                    Si amabwiriza yemejwe yo guhinga ubu bwoko.
+                    Amakuru nyakuri azashyirwa muri SSAS amaze kugenzurwa.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- ==================== FARMER ACTIONS ==================== -->
+        <section class="farmer-actions-section">
+
+            <div class="section-heading">
+                <span class="section-tag">INTAMBWE IKURIKIRA</span>
+
+                <h2>Wifuza gukora iki?</h2>
+
+                <p>
+                    Komeza ushakishe amakuru agufasha gufata
+                    icyemezo kijyanye n'ubuhinzi bwawe.
+                </p>
+            </div>
+
+            <div class="action-cards">
+
+                <!-- Supplier action -->
+                <article class="action-card">
+
+                    <div class="action-icon" aria-hidden="true">
+                        🛒
+                    </div>
+
+                    <h3>Shaka abatanga imbuto</h3>
+
+                    <p>
+                        Reba aho ushobora kubona ubu bwoko
+                        bw'igihingwa mu karere kawe.
+                    </p>
+                    
+                    
+                    <a href="{{ url_for('suppliers.supplier_varieties',variety_id=variety.variety_id) }}" class="btn btn-primary">
+                        Shaka Abatanga Imbuto →
+                    </a>
+
+                </article>
+
+
+                <!-- Feedback action -->
+                <article class="action-card">
+
+                    <div class="action-icon" aria-hidden="true">
+                        💬
+                    </div>
+
+                    <h3>Sangiza abandi ubunararibonye</h3>
+
+                    <p>
+                        Tanga igitekerezo cyangwa usangize abandi
+                        ibyo wamenye ku buhinzi bw'ubu bwoko.
+                    </p>
+
+                    <a href="{{ url_for('feedback.feedback',variety_id=variety.variety_id)}}" class="btn btn-secondary">
+                        Tanga Igitekerezo →
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="site-footer">
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+                <strong>☀️ SSAS</strong>
+
+                <p>
+                    Ikoranabuhanga rifasha abahinzi kubona amakuru
+                    ajyanye n'ubwoko bw'ibihingwa n'ubuhinzi.
+                </p>
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    © 2026 SSAS — Ubumenyi bufasha ubuhinzi.
+                </p>
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

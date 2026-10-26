@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS | Abatanga Imbuto</title>
+
+    <!-- Shared website styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Supplier page styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/suppliers.css') }}">
+</head>
+
+<body>
+
+    <!-- ==================== HEADER / NAVIGATION ==================== -->
+    <header class="site-header">
+        <nav class="navbar">
+
+            <a href="/" class="brand">
+                <span class="brand-icon">☀️</span>
+
+                <span class="brand-text">
+                    <strong>SSAS</strong>
+                    <small>Smart Summer Agriculture System</small>
+                </span>
+            </a>
+
+            <div class="nav-links">
+                <a href="/">Ahabanza</a>
+                <a href="/varieties">Ubwoko bw'Ibihingwa</a>
+                <a href="/#how-it-works">Uko Bikora</a>
+                <a href="/#about">Abo Turi Bo</a>
+            </div>
+
+            <a href="/varieties" class="btn btn-primary nav-button">
+                Reba Ibihingwa
+            </a>
+
+        </nav>
+    </header>
+
+
+    <!-- ==================== PAGE HERO ==================== -->
+    <section class="supplier-hero">
+
+        <div class="supplier-hero-content">
+
+            <a href="/varieties" class="supplier-back-link">
+                ← Subira ku bwoko bw'ibihingwa
+            </a>
+
+            <span class="eyebrow">ABAFASHA ABahinzi</span>
+
+            <h1>
+                Shaka aho wabona imbuto n'ibikoresho by'ubuhinzi
+            </h1>
+
+            <p>
+                Hitamo aho uherereye kugira ngo ubone amakuru
+                y'abatanga ubwoko bw'igihingwa wahisemo.
+            </p>
+
+        </div>
+
+        <div class="supplier-hero-decoration" aria-hidden="true">
+            🌱 🧺 ☀️
+        </div>
+
+    </section>
+
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="supplier-container">
+
+        <!-- ==================== SEARCH FORM ==================== -->
+        <section class="supplier-search-section">
+
+            <div class="section-heading">
+                <span class="section-tag">AHO UHEREREYE</span>
+
+                <h2>Hitamo aho ushakira abatanga imbuto</h2>
+
+                <p>
+                    Tangira uhitamo akarere, hanyuma uhitemo umurenge
+                    uri muri ako karere.
+                </p>
+            </div>
+
+            <form action="/suppliers" method="GET" class="supplier-form">
+
+                <!-- Selected crop variety -->
+                <div class="form-group">
+                    <label for="variety">
+                        Ubwoko bw'igihingwa
+                    </label>
+
+                    <select id="variety" name="variety" required>
+                        <option value="">-- Hitamo ubwoko --</option>
+                        <option value="example-beans">
+                            Ibishyimbo (urugero)
+                        </option>
+                    </select>
+                </div>
+
+                <!-- District selection -->
+                <div class="form-group">
+                    <label for="district">
+                        Akarere
+                    </label>
+
+                    <select id="district" name="district" required>
+                        <option value="">-- Hitamo akarere --</option>
+                        <option value="muhanga">Muhanga (urugero)</option>
+                        <option value="kamonyi">Kamonyi (urugero)</option>
+                    </select>
+                </div>
+
+                <!-- Sector selection -->
+                <div class="form-group">
+                    <label for="sector">
+                        Umurenge
+                    </label>
+
+                    <select id="sector" name="sector" required>
+                        <option value="">-- Banza uhitemo akarere --</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary supplier-submit">
+                    Shaka Abatanga Imbuto
+                </button>
+
+            </form>
+
+            <p class="form-note">
+                ℹ️ Umurenge uzajya ugaragaza gusa imirenge iri
+                mu karere wahisemo.
+            </p>
+
+        </section>
+
+
+        <!-- ==================== SEARCH RESULTS ==================== -->
+        <section class="supplier-results-section">
+
+            <div class="section-heading">
+                <span class="section-tag">IBISUBIZO</span>
+
+                <h2>Abatanga imbuto babonetse</h2>
+
+                <p>
+                    Hano hazagaragara abatanga ubwoko bw'igihingwa
+                    wahisemo, hakurikijwe aho uherereye.
+                </p>
+            </div>
+
+            <!-- Empty state shown before database integration -->
+            <div class="supplier-empty-state">
+
+                <div class="empty-state-icon" aria-hidden="true">
+                    🧑‍🌾
+                </div>
+
+                <h3>Nta bisubizo biragaragara ubu</h3>
+
+                <p>
+                    Banza uhitemo ubwoko bw'igihingwa, akarere
+                    n'umurenge. Abatanga imbuto bazajya bagaragara
+                    hano amakuru yabo amaze kubikwa muri SSAS.
+                </p>
+
+            </div>
+
+            <!--
+                FUTURE SUPPLIER CARD EXAMPLE
+
+                Each supplier card will later display:
+                - Supplier name
+                - Crop variety supplied
+                - District and sector
+                - Telephone number
+                - Address or other contact details
+            -->
+
+        </section>
+
+
+        <!-- ==================== FARMER REMINDER ==================== -->
+        <section class="supplier-reminder">
+
+            <div class="reminder-icon" aria-hidden="true">
+                🌿
+            </div>
+
+            <div>
+                <h3>Inama ku bahinzi</h3>
+
+                <p>
+                    Banza ugenzure ko ubwoko bw'imbuto ugiye kugura
+                    bujyanye n'ibyo ukeneye. Kuba umucuruzi agaragara
+                    muri SSAS ntibihita byemeza ubwiza bw'imbuto
+                    cyangwa ko zikwiye guhingwa mu karere kawe.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="site-footer">
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+                <strong>☀️ SSAS</strong>
+
+                <p>
+                    Ikoranabuhanga rifasha abahinzi kubona amakuru
+                    ajyanye n'ubwoko bw'ibihingwa n'ubuhinzi.
+                </p>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 SSAS — Ubumenyi bufasha ubuhinzi.</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ==================== SECTOR SELECTION DEMO ==================== -->
+    <script>
+        // Example sectors for demonstrating the district selection.
+        // These will later be loaded from the database.
+
+        const districtSelect = document.getElementById("district");
+        const sectorSelect = document.getElementById("sector");
+
+        const exampleSectors = {
+            muhanga: ["Nyamabuye", "Shyogwe", "Cyeza"],
+            kamonyi: ["Rukoma", "Gacurabwenge", "Rugarika"]
+        };
+
+        districtSelect.addEventListener("change", function () {
+
+            // Clear the previous sector options.
+            sectorSelect.innerHTML =
+                '<option value="">-- Hitamo umurenge --</option>';
+
+            // Get the sectors belonging to the selected district.
+            const selectedDistrict = this.value;
+            const sectors = exampleSectors[selectedDistrict] || [];
+
+            // Add the available sectors to the dropdown.
+            sectors.forEach(function (sector) {
+
+                const option = document.createElement("option");
+
+                option.value = sector.toLowerCase();
+                option.textContent = sector;
+
+                sectorSelect.appendChild(option);
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

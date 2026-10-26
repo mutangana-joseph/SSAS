@@ -1,6 +1,15 @@
+from app.extensions import db
 
-class Sector:
-    def __init__(self, sector_id, district_id, sector_name):
-        self.sector_id = sector_id
-        self.district_id = district_id
-        self.sector_name = sector_name
+
+class Sector(db.Model):
+    __tablename__ = "sectors"
+
+    sector_id = db.Column(db.String(10), primary_key=True)
+
+    district_id = db.Column(
+        db.String(10),
+        db.ForeignKey("districts.district_id"),
+        nullable=False
+    )
+
+    sector_name = db.Column(db.String(100), nullable=False)

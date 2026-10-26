@@ -1,0 +1,244 @@
+
+/* ==================================================
+   1. SUPPLIER PAGE INTRODUCTION
+   ================================================== */
+
+.supplier-hero {
+    padding: 65px 0;
+    text-align: center;
+    background: linear-gradient(135deg,
+            #fff8df,
+            #fff0bd);
+}
+
+.supplier-hero h1 {
+    margin: 14px 0;
+    color: #355b2b;
+    font-size: 2.4rem;
+}
+
+.supplier-hero p {
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: #5c6655;
+}
+
+
+/* ==================================================
+   2. SUPPLIER RESULTS SECTION
+   ================================================== */
+
+.supplier-section {
+    padding-top: 55px;
+    padding-bottom: 70px;
+}
+
+.supplier-section .section-heading {
+    margin-bottom: 25px;
+}
+
+
+/* ==================================================
+   3. SELECTED VARIETY INFORMATION
+   ================================================== */
+
+.selected-variety {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    padding: 20px;
+    margin-bottom: 30px;
+
+    background: #f5f8ee;
+    border: 1px solid #dce8cf;
+    border-radius: 12px;
+}
+
+.selected-variety>span {
+    font-size: 2rem;
+}
+
+.selected-variety h3 {
+    margin: 0 0 6px;
+    color: #355b2b;
+}
+
+.selected-variety p {
+    margin: 0;
+    color: #606b59;
+    line-height: 1.6;
+}
+
+
+/* ==================================================
+   4. SUPPLIER CARDS
+   ================================================== */
+
+.supplier-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.supplier-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+
+    padding: 24px;
+
+    background: #ffffff;
+    border: 1px solid #e6e8df;
+    border-radius: 14px;
+
+    box-shadow: 0 4px 14px rgba(44, 66, 34, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.supplier-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(44, 66, 34, 0.1);
+}
+
+.supplier-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 54px;
+    height: 54px;
+
+    background: #fff2c9;
+    border-radius: 12px;
+
+    font-size: 1.7rem;
+}
+
+.supplier-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.supplier-info h3 {
+    margin: 0 0 14px;
+    color: #355b2b;
+    overflow-wrap: anywhere;
+}
+
+.supplier-info p {
+    margin: 8px 0;
+    color: #606b59;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+
+/* ==================================================
+   5. SUPPLIER AVAILABILITY
+   ================================================== */
+
+.availability {
+    display: inline-block;
+
+    margin: 10px 0 16px;
+    padding: 6px 12px;
+
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.availability.available {
+    color: #276738;
+    background: #e5f5e8;
+}
+
+.availability.unavailable {
+    color: #8a4c1e;
+    background: #fff0df;
+}
+
+
+/* ==================================================
+   6. EMPTY RESULTS MESSAGE
+   ================================================== */
+
+.empty-state {
+    padding: 45px 24px;
+    text-align: center;
+
+    background: #fafbf7;
+    border: 1px dashed #cbd7c0;
+    border-radius: 14px;
+}
+
+.empty-icon {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 2.5rem;
+}
+
+.empty-state h3 {
+    margin: 0 0 12px;
+    color: #355b2b;
+}
+
+.empty-state p {
+    max-width: 600px;
+    margin: 0 auto;
+    color: #606b59;
+    line-height: 1.8;
+}
+
+
+/* ==================================================
+   7. PAGE NAVIGATION
+   ================================================== */
+
+.supplier-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    margin-top: 35px;
+}
+
+
+/* ==================================================
+   8. RESPONSIVE DESIGN
+   ================================================== */
+
+@media (max-width: 768px) {
+
+    .supplier-hero {
+        padding: 45px 0;
+    }
+
+    .supplier-hero h1 {
+        font-size: 1.9rem;
+    }
+
+    .supplier-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .supplier-card {
+        padding: 18px;
+    }
+
+    .supplier-actions {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+}
+
