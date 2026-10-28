@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSAS | Gucunga amakuru</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/management.css') }}">
+</head>
+
+<body class="management-page">
+
+    <div class="management-layout">
+
+        {% include '_sidebar.html' %}
+
+        <main class="management-main">
+
+            <!-- TOP BAR -->
+            <header class="management-topbar">
+                <div>
+                    <p class="breadcrumb">SSAS / Gucunga amakuru</p>
+
+                    <h1>
+                        {% if active_section == 'crops' %}
+                        Gucunga Ibihingwa
+                        {% elif active_section == 'varieties' %}
+                        Gucunga Amoko y'Ibihingwa
+                        {% elif active_section == 'district_varieties' %}
+                        Guhuza Uturere n'Ubwoko
+                        {% elif active_section == 'districts' %}
+                        Gucunga Uturere
+                        {% elif active_section == 'sectors' %}
+                        Gucunga Imirenge
+                        {% elif active_section == 'guides' %}
+                        Gucunga Amabwiriza yo Guhinga
+                        {% elif active_section == 'suppliers' %}
+                        Gucunga Abatanga Imbuto
+                        {% elif active_section == 'feedback' %}
+                        Ibitekerezo by'Abahinzi
+                        {% endif %}
+                    </h1>
+                </div>
+
+                <div class="topbar-badge">
+                    <span class="status-dot"></span>
+                    Umuyobozi
+                </div>
+            </header>
+
+
+            <!-- FLASH MESSAGES -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endwith %}
+
+
+            <!-- SECTION INTRODUCTION -->
+            <section class="section-intro">
+                <div>
+                    <p class="eyebrow">GUCUNGA AMAKURU YO MURI SSAS</p>
+
+                    {% if active_section == 'crops' %}
+                    <h2>Ibihingwa</h2>
+                    <p>Reba kandi ucunge ibihingwa byanditswe.</p>
+
+                    {% elif active_section == 'varieties' %}
+                    <h2>Amoko y'ibihingwa</h2>
+                    <p>Genzura amoko y'ibihingwa n'ibihingwa bifitanye isano na yo.</p>
+
+                    {% elif active_section == 'district_varieties' %}
+                    <h2>Guhuza Uturere n'Ubwoko</h2>
+                    <p>Genzura ubwoko bw'ibihingwa bufitanye isano na buri karere.</p>
+
+                    {% elif active_section == 'districts' %}
+                    <h2>Uturere</h2>
+                    <p>Reba kandi ucunge uturere twanditswe.</p>
+
+                    {% elif active_section == 'sectors' %}
+                    <h2>Imirenge</h2>
+                    <p>Genzura imirenge n'uturere irimo.</p>
+
+                    {% elif active_section == 'guides' %}
+                    <h2>Amabwiriza yo guhinga</h2>
+                    <p>Genzura amabwiriza n'intambwe zo guhinga.</p>
+
+                    {% elif active_section == 'suppliers' %}
+                    <h2>Abatanga imbuto</h2>
+                    <p>Genzura amakuru y'abatanga imbuto.</p>
+
+                    {% elif active_section == 'feedback' %}
+                    <h2>Ibitekerezo by'abahinzi</h2>
+                    <p>Soma ibitekerezo n'ubutumwa abahinzi batanze.</p>
+                    {% endif %}
+                </div>
+
+
+                <!-- ADD BUTTONS -->
+                {% if active_section == 'crops' %}
+                <a href="{{ url_for('admin.add_crop') }}" class="add-button">＋ Ongeramo igihingwa</a>
+
+                {% elif active_section == 'varieties' %}
+                <a href="{{ url_for('admin.add_variety') }}" class="add-button">＋ Ongeramo ubwoko</a>
+
+                {% elif active_section == 'district_varieties' %}
+                <a href="{{ url_for('admin.add_district_variety') }}" class="add-button">＋ Huza akarere n'ubwoko</a>
+
+                {% elif active_section == 'guides' %}
+                <a href="{{ url_for('admin.add_guide') }}" class="add-button">＋ Ongeramo amabwiriza</a>
+                {% endif %}
+            </section>
+
+
+            <!-- SELECT ACTIVE RECORDS -->
+            {% if active_section == 'crops' %}
+            {% set records = crops %}
+            {% elif active_section == 'varieties' %}
+            {% set records = varieties %}
+            {% elif active_section == 'district_varieties' %}
+            {% set records = district_varieties %}
+            {% elif active_section == 'districts' %}
+            {% set records = districts %}
+            {% elif active_section == 'sectors' %}
+            {% set records = sectors %}
+            {% elif active_section == 'guides' %}
+            {% set records = guides %}
+            {% elif active_section == 'suppliers' %}
+            {% set records = suppliers %}
+            {% elif active_section == 'feedback' %}
+            {% set records = feedback %}
+            {% else %}
+            {% set records = [] %}
+            {% endif %}
+
+
+            <!-- DATA CARD -->
+            <section class="data-card">
+
+                <div class="table-heading">
+                    <div>
+                        <h3>Amakuru yanditswe</h3>
+                        <p>Amakuru abitswe muri sisitemu ya SSAS</p>
+                    </div>
+
+                    <span class="record-count">
+                        {{ records|length }} byanditswe
+                    </span>
+                </div>
+
+
+                {% if records %}
+
+                <div class="table-scroll">
+                    <table class="management-table">
+
+                        <!-- TABLE HEADINGS -->
+                        <thead>
+                            <tr>
+                                {% if active_section == 'district_varieties' %}
+                                <th>Akarere</th>
+                                <th>Ubwoko bw'igihingwa</th>
+                                <th>Uko buhagaze</th>
+                                <th>Inkomoko y'ibimenyetso</th>
+
+                                {% else %}
+                                {% for column in records[0].__table__.columns %}
+                                <th>
+                                    {{ column.name
+                                    | replace('_', ' ')
+                                    | title }}
+                                </th>
+                                {% endfor %}
+                                {% endif %}
+
+                                {% if active_section != 'feedback' %}
+                                <th class="actions-heading">Ibikorwa</th>
+                                {% endif %}
+                            </tr>
+                        </thead>
+
+
+                        <!-- TABLE ROWS -->
+                        <tbody>
+                            {% for record in records %}
+                            <tr>
+
+                                {% if active_section == 'district_varieties' %}
+
+                                {% set district = districts
+                                | selectattr('district_id', 'equalto', record.district_id)
+                                | first %}
+
+                                {% set variety = varieties
+                                | selectattr('variety_id', 'equalto', record.variety_id)
+                                | first %}
+
+                                <td>
+                                    {{ district.district_name if district else 'Ntikizwi' }}
+                                </td>
+
+                                <td>
+                                    {{ variety.variety_name if variety else 'Ntibuzwi' }}
+                                </td>
+
+                                <td>
+                                    <span class="status-pill">
+                                        {{ record.suitability_status }}
+                                    </span>
+                                </td>
+
+                                <td>
+                                    {{ record.evidence_source or 'Nta bimenyetso byanditse' }}
+                                </td>
+
+                                {% else %}
+
+                                {% for column in record.__table__.columns %}
+                                <td>
+                                    {% set value = record | attr(column.name) %}
+                                    {{ value if value is not none else '—' }}
+                                </td>
+                                {% endfor %}
+
+                                {% endif %}
+
+
+                                <!-- ACTIONS -->
+                                {% if active_section != 'feedback' %}
+                                <td class="actions-cell">
+
+                                    {% if active_section == 'crops' %}
+
+                                    <a class="guide-action edit-button"
+                                        href="{{ url_for('admin.edit_crop', crop_id=record.crop_id) }}">
+                                        Hindura
+                                    </a>
+
+                                    <form method="POST"
+                                        action="{{ url_for('admin.delete_crop', crop_id=record.crop_id) }}"
+                                        class="guide-delete-form"
+                                        onsubmit="return confirm('Urashaka koko gusiba iki gihingwa?');">
+                                        <button class="guide-action delete-button" type="submit">Siba</button>
+                                    </form>
+
+
+                                    {% elif active_section == 'varieties' %}
+
+                                    <a class="guide-action edit-button"
+                                        href="{{ url_for('admin.edit_variety', variety_id=record.variety_id) }}">
+                                        Hindura
+                                    </a>
+
+                                    <form method="POST"
+                                        action="{{ url_for('admin.delete_variety', variety_id=record.variety_id) }}"
+                                        class="guide-delete-form"
+                                        onsubmit="return confirm('Urashaka koko gusiba ubu bwoko?');">
+                                        <button class="guide-action delete-button" type="submit">Siba</button>
+                                    </form>
+
+
+                                    {% elif active_section == 'district_varieties' %}
+
+                                    <a class="guide-action edit-button"
+                                        href="{{ url_for('admin.edit_district_variety', district_id=record.district_id, variety_id=record.variety_id) }}">
+                                        Hindura
+                                    </a>
+
+                                    <form method="POST"
+                                        action="{{ url_for('admin.delete_district_variety', district_id=record.district_id, variety_id=record.variety_id) }}"
+                                        class="guide-delete-form"
+                                        onsubmit="return confirm('Urashaka koko gusiba iri sano?');">
+                                        <button class="guide-action delete-button" type="submit">Siba</button>
+                                    </form>
+
+
+                                    {% elif active_section == 'districts' %}
+
+                                    <a class="guide-action edit-button"
+                                        href="{{ url_for('admin.edit_district', district_id=record.district_id) }}">
+                                        Hindura
+                                    </a>
+
+                                    <form method="POST"
+                                        action="{{ url_for('admin.delete_district', district_id=record.district_id) }}"
+                                        class="guide-delete-form"
+                                        onsubmit="return confirm('Urashaka koko gusiba aka karere?');">
+                                        <button class="guide-action delete-button" type="submit">Siba</button>
+                                    </form>
+
+
+                                    {% elif active_section == 'sectors' %}
+
+                                    <a class="guide-action edit-button"
+                                        href="{{ url_for('admin.edit_sector', sector_id=record.sector_id) }}">
+                                        Hindura
+                                    </a>
+
+                                    <form method="POST"
+                                        action="{{ url_for('admin.delete_sector', sector_id=record.sector_id) }}"
+                                        class="guide-delete-form"
+                                        onsubmit="return confirm('Urashaka koko gusiba uyu murenge?');">
+                                        <button class="guide-action delete-button" type="submit">Siba</button>
+                                    </form>
+
+
+                                    {% elif active_section == 'suppliers' %}
+
+                                    <a class="guide-action edit-button"
+                                        href="{{ url_for('admin.edit_supplier', supplier_id=record.supplier_id) }}">
+                                        Hindura
+                                    </a>
+
+                                    <form method="POST"
+                                        action="{{ url_for('admin.delete_supplier', supplier_id=record.supplier_id) }}"
+                                        class="guide-delete-form"
+                                        onsubmit="return confirm('Urashaka koko gusiba uyu mutanga imbuto?');">
+                                        <button class="guide-action delete-button" type="submit">Siba</button>
+                                    </form>
+
+
+                                    {% elif active_section == 'guides' %}
+
+                                    <a class="guide-action edit-button"
+                                        href="{{ url_for('admin.edit_guide', guide_id=record.guide_id) }}">
+                                        Hindura
+                                    </a>
+
+                                    <form method="POST"
+                                        action="{{ url_for('admin.delete_guide', guide_id=record.guide_id) }}"
+                                        class="guide-delete-form"
+                                        onsubmit="return confirm('Urashaka koko gusiba aya mabwiriza?');">
+                                        <button class="guide-action delete-button" type="submit">Siba</button>
+                                    </form>
+
+                                    {% endif %}
+
+                                </td>
+                                {% endif %}
+
+                            </tr>
+
+
+                            <!-- GUIDE STEPS -->
+                            {% if active_section == 'guides' %}
+
+                            {% set current_steps = guide_steps
+                            | selectattr('guide_id', 'equalto', record.guide_id)
+                            | list %}
+
+                            <tr class="guide-steps-row">
+                                <td colspan="5">
+
+                                    <details class="guide-steps-details">
+                                        <summary>
+                                            <span class="expand-icon" aria-hidden="true">+</span>
+                                            <span>
+                                                Reba intambwe zo guhinga
+                                                ({{ current_steps|length }})
+                                            </span>                              </summary>
+
+                                        <div class="guide-steps-content">
+
+                                            {% for step in current_steps %}
+                                            <div class="guide-step-item">
+
+                                                <div class="guide-step-number">
+                                                    {{ step.step_number }}
+                                                </div>
+
+                                                <div class="guide-step-info">
+                                                    <h4>{{ step.title }}</h4>
+                                                    <p>{{ step.instructions }}</p>
+                                                </div>
+
+                                                <div class="guide-step-actions">
+                                                    <a class="guide-action edit-button"
+                                                        href="{{ url_for('admin.edit_guide_step', step_id=step.step_id) }}">
+                                                        Hindura
+                                                    </a>
+
+                                                    <form method="POST"
+                                                        action="{{ url_for('admin.delete_guide_step', step_id=step.step_id) }}"
+                                                        class="guide-delete-form"
+                                                        onsubmit="return confirm('Urashaka koko gusiba iyi ntambwe?');">
+                                                        <button class="guide-action delete-button"
+                                                            type="submit">Siba</button>
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                            {% endfor %}
+
+                                            <a class="add-button"
+                                                href="{{ url_for('admin.add_guide_step', guide_id=record.guide_id) }}">
+                                                ＋ Ongeraho intambwe
+                                            </a>
+
+                                        </div>
+                                    </details>
+
+                                </td>
+                            </tr>
+
+                            {% endif %}
+
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+
+                {% else %}
+
+                <div class="empty-state">
+                    <div class="empty-icon">🌱</div>
+                    <h3>Nta makuru ahari</h3>
+                    <p>Amakuru mashya azagaragara hano namara kwandikwa.</p>
+                </div>
+
+                {% endif %}
+
+
+                <div class="table-footer">
+                    <span>Amakuru yo muri SSAS</span>
+                    <span>Smart Summer Agriculture System</span>
+                </div>
+
+            </section>
+
+
+            <footer class="management-footer">
+                <p>SSAS · Guhuza ubumenyi mu buhinzi n'abahinzi</p>
+            </footer>
+
+        </main>
+    </div>
+
+</body>
+
+</html>

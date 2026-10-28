@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSAS | Hindura Igihingwa</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/edit_record.css') }}">
+</head>
+
+<body class="edit-record-page">
+
+    <main class="edit-record-container">
+
+        <nav class="edit-record-breadcrumb">
+            <a href="{{ url_for('admin.manage_crops') }}">Ibihingwa</a>
+            / Hindura
+        </nav>
+
+        <section class="edit-record-card">
+
+            <header class="edit-record-header">
+                <p class="edit-record-eyebrow">Gucunga ibihingwa</p>
+                <h1>Hindura igihingwa</h1>
+                <p>Hindura amakuru y'igihingwa cyanditswe muri SSAS.</p>
+            </header>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+            <div class="edit-record-flash {{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endwith %}
+
+            <form class="edit-record-form" method="POST"
+                action="{{ url_for('admin.edit_crop', crop_id=crop.crop_id) }}">
+
+                <div class="edit-record-id">
+                    Nimero y'igihingwa: <strong>{{ crop.crop_id }}</strong>
+                </div>
+
+                <div class="edit-record-field">
+                    <label for="crop_name">Izina ry'igihingwa</label>
+                    <input type="text" id="crop_name" name="crop_name" value="{{ crop.crop_name }}" maxlength="100"
+                        required>
+                </div>
+
+                <div class="edit-record-actions">
+                    <a class="edit-record-button secondary" href="{{ url_for('admin.manage_crops') }}">
+                        Subira inyuma
+                    </a>
+
+                    <button class="edit-record-button primary" type="submit">
+                        Bika impinduka
+                    </button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+</body>
+
+</html>

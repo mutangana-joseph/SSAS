@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSAS | Hindura Akarere</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/edit_record.css') }}">
+</head>
+
+<body class="edit-record-page">
+
+    <main class="edit-record-container">
+
+        <nav class="edit-record-breadcrumb">
+            <a href="{{ url_for('admin.manage_districts') }}">Uturere</a>
+            / Hindura
+        </nav>
+
+        <section class="edit-record-card">
+
+            <header class="edit-record-header">
+                <p class="edit-record-eyebrow">Gucunga uturere</p>
+                <h1>Hindura akarere</h1>
+                <p>Hindura izina ry'akarere kanditswe muri SSAS.</p>
+            </header>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+            <div class="edit-record-flash {{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endwith %}
+
+            <form class="edit-record-form" method="POST"
+                action="{{ url_for('admin.edit_district', district_id=district.district_id) }}">
+
+                <div class="edit-record-id">
+                    Nimero y'akarere: <strong>{{ district.district_id }}</strong>
+                </div>
+
+                <div class="edit-record-field">
+                    <label for="district_name">Izina ry'akarere</label>
+                    <input type="text" id="district_name" name="district_name" value="{{ district.district_name }}"
+                        maxlength="100" required>
+                </div>
+
+                <div class="edit-record-actions">
+                    <a class="edit-record-button secondary" href="{{ url_for('admin.manage_districts') }}">
+                        Subira inyuma
+                    </a>
+
+                    <button class="edit-record-button primary" type="submit">
+                        Bika impinduka
+                    </button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+/* ==================== GUIDE STEP FORM ==================== */
+
+.guide-step-form {
+    padding: 24px;
+}
+
+.guide-step-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.guide-step-form label {
+    font-weight: 600;
+    color: #294632;
+}
+
+.guide-step-form input,
+.guide-step-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #d9dfd4;
+    border-radius: 8px;
+    font: inherit;
+    background: #fff;
+}
+
+.guide-step-form input:focus,
+.guide-step-form textarea:focus {
+    outline: 2px solid #c9a52b;
+    border-color: #c9a52b;
+}
+
+.guide-step-form textarea {
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.guide-step-form .form-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* DROPDOWN ZO GUHITAMO AKARERE N'UBWOKO BW'IGIHINGWA */
+.guide-step-form select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #d9dfd4;
+    border-radius: 8px;
+    font: inherit;
+    background: #fff;
+    color: #294632;
+}
+
+.guide-step-form select:focus {
+    outline: 2px solid #c9a52b;
+    border-color: #c9a52b;
+}

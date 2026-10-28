@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Guhindura amakuru | SSAS</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_guide_step.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/management.css') }}">
+</head>
+
+<body class="management-page">
+    <div class="management-layout">
+
+        {% set active_section = 'district_varieties' %}
+        {% include '_sidebar.html' %}
+
+        <main class="management-main">
+
+            <header class="management-topbar">
+                <div class="breadcrumb">
+                    SSAS / Imiyoborere / Guhuza Uturere n'Ubwoko / Hindura
+                </div>
+
+                <div class="topbar-badge">
+                    <span class="status-dot"></span>
+                    Umuyobozi
+                </div>
+            </header>
+
+            <section class="section-intro">
+                <p class="eyebrow">GUHINDURA AMAKURU</p>
+                <h1>Hindura aho ubwoko bukoreshwa</h1>
+
+                <p>
+                    Hindura akarere, ubwoko bw'igihingwa,
+                    uko buhagaze cyangwa inkomoko y'ibimenyetso.
+                </p>
+            </section>
+
+            <section class="data-card">
+                <form method="POST" action="{{ url_for(
+                          'admin.edit_district_variety',
+                          district_id=assignment.district_id,
+                          variety_id=assignment.variety_id
+                      ) }}" class="guide-step-form">
+
+                    <div class="form-group">
+                        <label for="district_id">Akarere</label>
+
+                        <select id="district_id" name="district_id" required>
+                            <option value="">-- Hitamo akarere --</option>
+
+                            {% for district in districts %}
+                            <option value="{{ district.district_id }}" {% if request.form.get('district_id',
+                                assignment.district_id)==district.district_id %}selected{% endif %}>
+                                {{ district.district_name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="variety_id">Ubwoko bw'igihingwa</label>
+
+                        <select id="variety_id" name="variety_id" required>
+                            <option value="">-- Hitamo ubwoko --</option>
+
+                            {% for variety in varieties %}
+                            <option value="{{ variety.variety_id }}" {% if request.form.get('variety_id',
+                                assignment.variety_id)==variety.variety_id %}selected{% endif %}>
+                                {{ variety.variety_name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="suitability_status">Uko buhagaze</label>
+
+                        <select id="suitability_status" name="suitability_status" required>
+
+                            <option value="">-- Hitamo uko buhagaze --</option>
+
+                            <option value="Suitable" {% if request.form.get('suitability_status',
+                                assignment.suitability_status)=='Suitable' %}selected{% endif %}>
+                                Burakwiriye (Suitable)
+                            </option>
+
+                            <option value="Not Suitable" {% if request.form.get('suitability_status',
+                                assignment.suitability_status)=='Not Suitable' %}selected{% endif %}>
+                                Ntabwo burakwiriye (Not Suitable)
+                            </option>
+
+                            <option value="Under Evaluation" {% if request.form.get('suitability_status',
+                                assignment.suitability_status)=='Under Evaluation' %}selected{% endif %}>
+                                Buracyakorerwaho ubushakashatsi (Under Evaluation)
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="evidence_source">
+                            Inkomoko y'ibimenyetso
+                        </label>
+
+                        <textarea id="evidence_source" name="evidence_source" rows="4"
+                            placeholder="Andika inkomoko y'ubushakashatsi...">{{ request.form.get('evidence_source', assignment.evidence_source or '') }}</textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="add-button">
+                            Bika impinduka
+                        </button>
+
+                        <a href="{{ url_for('admin.manage_district_varieties') }}" class="action-placeholder">
+                            Subira inyuma
+                        </a>
+                    </div>
+
+                </form>
+            </section>
+
+        </main>
+    </div>
+</body>
+
+</html>

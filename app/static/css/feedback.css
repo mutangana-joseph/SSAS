@@ -76,6 +76,33 @@
     gap: 20px;
 }
 
+/* Feedback status messages */
+.feedback-messages {
+    margin-bottom: 24px;
+}
+
+.feedback-message {
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Error message */
+.feedback-message-error {
+    color: #842029;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+}
+
+/* Success message */
+.feedback-message-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border: 1px solid #a3cfbb;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;

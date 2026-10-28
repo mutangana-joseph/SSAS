@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS | Ongeramo Igihingwa</title>
+
+    <!-- ==================== CSS FILES ==================== -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_guide_step.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/management.css') }}">
+</head>
+
+<body class="management-page">
+
+    <div class="management-layout">
+
+        <!-- ==================== SIDEBAR ==================== -->
+        {% set active_section = 'crops' %}
+        {% include '_sidebar.html' %}
+
+        <main class="management-main">
+
+            <!-- ==================== PAGE HEADER ==================== -->
+            <header class="management-topbar">
+                <div>
+                    <p class="breadcrumb">
+                        SSAS / Imicungire / Ibihingwa
+                    </p>
+
+                    <h1>Ongeramo Igihingwa</h1>
+                </div>
+
+                <div class="topbar-badge">
+                    <span class="status-dot"></span>
+                    Umwanya w'Umuyobozi
+                </div>
+            </header>
+
+            <!-- ==================== INTRODUCTION ==================== -->
+            <section class="section-intro">
+                <div>
+                    <p class="eyebrow">IBIHINGWA</p>
+
+                    <h2>Andikisha igihingwa gishya</h2>
+
+                    <p>
+                        Injiza nimero n'izina ry'igihingwa kugira ngo
+                        wongere igihingwa gishya muri sisitemu ya SSAS.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== CROP FORM ==================== -->
+            <section class="data-card">
+
+                <div class="table-heading">
+                    <div>
+                        <h3>Amakuru y'igihingwa</h3>
+
+                        <p>
+                            Uzuza amakuru asabwa kugira ngo ubike igihingwa.
+                        </p>
+                    </div>
+                </div>
+
+                <form method="POST" action="{{ url_for('admin.add_crop') }}" class="guide-step-form">
+
+                    <!-- CROP ID -->
+                    <div class="form-group">
+                        <label for="crop_id">
+                            Nimero y'igihingwa
+                        </label>
+
+                        <input type="text" id="crop_id" name="crop_id" maxlength="10"
+                            value="{{ request.form.get('crop_id', '') }}" required placeholder="Urugero: C001">
+
+                        <small>
+                            Koresha nimero yihariye itarakoreshwa
+                            ku kindi gihingwa.
+                        </small>
+                    </div>
+
+                    <!-- CROP NAME -->
+                    <div class="form-group">
+                        <label for="crop_name">
+                            Izina ry'igihingwa
+                        </label>
+
+                        <input type="text" id="crop_name" name="crop_name" maxlength="100"
+                            value="{{ request.form.get('crop_name', '') }}" required placeholder="Urugero: Ibishyimbo">
+                    </div>
+
+                    <!-- FORM ACTIONS -->
+                    <div class="form-actions">
+                        <button type="submit" class="add-button">
+                            Bika igihingwa
+                        </button>
+
+                        <a href="{{ url_for('admin.manage_crops') }}" class="action-placeholder">
+                            Subira inyuma
+                        </a>
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- ==================== FOOTER ==================== -->
+            <footer class="management-footer">
+                <p>
+                    SSAS · Guhuza ubumenyi bw'ubuhinzi n'abahinzi
+                </p>
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

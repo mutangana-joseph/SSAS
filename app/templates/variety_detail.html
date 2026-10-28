@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="rw">
 
@@ -49,14 +50,15 @@
 
         <div class="detail-hero-content">
 
-            <a href="/varieties" class="back-link">
+            <a href="{{ url_for('varieties.varieties', district_id=selected_district_id) if selected_district_id else url_for('varieties.varieties') }}"
+               class="back-link">
                 ← Subira ku bwoko bw'ibihingwa
             </a>
 
             <span class="eyebrow">MENYA IGIHINGWA CYAWE</span>
 
             <h1>
-                Menya byinshi ku bwoko bw'igihingwa
+                Menya byinshi kuri {{ variety.variety_name }}
             </h1>
 
             <p>
@@ -88,20 +90,28 @@
 
                 <span class="section-tag">IGIHINGWA</span>
 
-                <h2>Ibishyimbo</h2>
+                <h2>
+                    {{ crop.crop_name if crop else "Igihingwa kitazwi" }}
+                </h2>
 
-                <h3>Ubwoko bw'ibishyimbo (urugero)</h3>
+                <h3>{{ variety.variety_name }}</h3>
 
                 <p>
-                    Ubu ni urugero rw'ubwoko bw'ibishyimbo bwashyizwe
-                    muri SSAS kugira ngo tugaragaze uko amakuru y'ubwoko
-                    bw'igihingwa azajya agaragara. Ibisobanuro nyakuri
-                    bizashyirwamo nyuma yo kubona amakuru yizewe.
+                    {{ variety.description or "Nta bisobanuro biratangwa kuri ubu bwoko." }}
                 </p>
 
                 <div class="variety-meta">
-                    <span>🌾 Igihingwa: Ibishyimbo</span>
-                    <span>📍 Akarere: Kazatoranywa</span>
+
+                    <span>
+                        🌾 Igihingwa:
+                        {{ crop.crop_name if crop else "Ntikiramenyekana" }}
+                    </span>
+
+                    <span>
+                        📍 Akarere:
+                        {{ selected_district.district_name if selected_district else "Nta karere karatoranywa" }}
+                    </span>
+
                 </div>
 
             </div>
@@ -135,20 +145,57 @@
                         Imiterere y'isuzuma
                     </span>
 
-                    <h3>Buracyasuzumwa</h3>
+                    {% if selected_district %}
 
-                    <p>
-                        Nta mwanzuro wizewe urashyirwa hano werekana
-                        ko ubu bwoko bukwiriye cyangwa budakwiriye
-                        akarere runaka. Hakenewe amakuru n'ibimenyetso
-                        byizewe mbere yo gutanga umwanzuro.
-                    </p>
+                        {% if district_variety %}
 
-                    <div class="evidence-note">
-                        <strong>Ibimenyetso:</strong>
-                        Amakuru y'isuzuma azongerwamo igihe azaba
-                        yabonetse kandi yagenzuwe.
-                    </div>
+                            <h3>{{ district_variety.suitability_status }}</h3>
+
+                            <p>
+                                Amakuru yerekeye ubu bwoko mu karere ka
+                                {{ selected_district.district_name }}.
+                            </p>
+
+                            <div class="evidence-note">
+                                <strong>Ibimenyetso:</strong>
+
+                                {{ district_variety.evidence_source
+                                   or "Nta bimenyetso by'isuzuma byashyizwe muri sisitemu." }}
+                            </div>
+
+                        {% else %}
+
+                            <h3>Nta makuru y'isuzuma arahari</h3>
+
+                            <p>
+                                Nta makuru yanditse muri sisitemu agaragaza
+                                uko ubu bwoko buhagaze mu karere ka
+                                {{ selected_district.district_name }}.
+                            </p>
+
+                            <div class="evidence-note">
+                                <strong>Ibimenyetso:</strong>
+                                Nta bimenyetso by'isuzuma biraboneka.
+                            </div>
+
+                        {% endif %}
+
+                    {% else %}
+
+                        <h3>Nta karere karatoranywa</h3>
+
+                        <p>
+                            Hitamo akarere kugira ngo urebe amakuru
+                            y'isuzuma ajyanye n'ubu bwoko muri ako karere.
+                        </p>
+
+                        <div class="evidence-note">
+                            <strong>Ibimenyetso:</strong>
+                            Amakuru y'isuzuma agaragazwa hashingiwe
+                            ku karere katoranyijwe.
+                        </div>
+
+                    {% endif %}
 
                 </div>
 
@@ -166,112 +213,104 @@
                 <h2>Amabwiriza yo guhinga</h2>
 
                 <p>
-                    Iki gice kizajya kigaragaza intambwe zo guhinga
-                    ubu bwoko, uhereye ku gutegura ubutaka kugeza
-                    igihe cyo gusarura.
+                    Amakuru yo guhinga ubu bwoko, kuva ku gutegura
+                    ubutaka kugeza igihe cyo gusarura, igihe ayo
+                    makuru yemejwe abitswe muri sisitemu.
                 </p>
             </div>
 
             <div class="guide-list">
 
-                <!-- Growing guide step 1 -->
-                <article class="guide-card">
+                {% if growing_guide %}
 
-                    <div class="guide-number">01</div>
+                    {% if guide_steps %}
 
-                    <div class="guide-content">
-                        <h3>Gutegura ubutaka</h3>
+                        {% for step in guide_steps %}
 
-                        <p>
-                            Amabwiriza yizewe ajyanye no gutegura
-                            ubutaka bw'ubu bwoko azashyirwa hano.
-                        </p>
-                    </div>
+                            <article class="guide-card">
 
-                    <span class="guide-icon" aria-hidden="true">
-                        🌍
-                    </span>
+                                <div class="guide-number">
+                                    {{ "%02d"|format(step.step_number) }}
+                                </div>
 
-                </article>
+                                <div class="guide-content">
 
+                                    <h3>{{ step.title }}</h3>
 
-                <!-- Growing guide step 2 -->
-                <article class="guide-card">
+                                    <p>{{ step.instructions }}</p>
 
-                    <div class="guide-number">02</div>
+                                </div>
 
-                    <div class="guide-content">
-                        <h3>Gutera imbuto</h3>
+                                <span class="guide-icon" aria-hidden="true">
+                                    {% if loop.index == 1 %}
+                                        🌍
+                                    {% elif loop.index == 2 %}
+                                        🌱
+                                    {% elif loop.index == 3 %}
+                                        💧
+                                    {% elif loop.index == 4 %}
+                                        🧺
+                                    {% else %}
+                                        🌿
+                                    {% endif %}
+                                </span>
 
-                        <p>
-                            Igihe cyo gutera, intera hagati y'imirongo
-                            n'iy'ibihingwa bizongerwamo hashingiwe
-                            ku mabwiriza yemewe y'ubu bwoko.
-                        </p>
-                    </div>
+                            </article>
 
-                    <span class="guide-icon" aria-hidden="true">
-                        🌱
-                    </span>
+                        {% endfor %}
 
-                </article>
-
-
-                <!-- Growing guide step 3 -->
-                <article class="guide-card">
-
-                    <div class="guide-number">03</div>
-
-                    <div class="guide-content">
-                        <h3>Kwita ku bihingwa</h3>
+                    {% else %}
 
                         <p>
-                            Amakuru ajyanye no kuhira, kurwanya
-                            indwara n'udukoko, no kwita ku bihingwa
-                            azashyirwa hano.
+                            Amabwiriza y'iyi gahunda y'ubuhinzi
+                            ntarashyirwamo intambwe.
                         </p>
-                    </div>
 
-                    <span class="guide-icon" aria-hidden="true">
-                        💧
-                    </span>
+                    {% endif %}
 
-                </article>
+                {% else %}
 
+                    <p>
+                        {% if selected_district %}
+                            Nta mabwiriza yo guhinga ubu bwoko abitswe
+                            muri sisitemu ku karere ka
+                            {{ selected_district.district_name }}.
+                        {% else %}
+                            Hitamo akarere kugira ngo urebe niba
+                            amabwiriza yo guhinga ubu bwoko ahari.
+                        {% endif %}
+                    </p>
 
-                <!-- Growing guide step 4 -->
-                <article class="guide-card">
-
-                    <div class="guide-number">04</div>
-
-                    <div class="guide-content">
-                        <h3>Gusarura</h3>
-
-                        <p>
-                            Igihe cyo gusarura n'ibimenyetso byerekana
-                            ko igihingwa gikuze neza bizongerwamo
-                            hashingiwe ku makuru yizewe.
-                        </p>
-                    </div>
-
-                    <span class="guide-icon" aria-hidden="true">
-                        🧺
-                    </span>
-
-                </article>
+                {% endif %}
 
             </div>
 
-            <div class="guide-disclaimer">
-                <span aria-hidden="true">ℹ️</span>
+            {% if growing_guide %}
 
-                <p>
-                    <strong>Icyitonderwa:</strong>
-                    Aya makuru ni urugero rw'imiterere y'urubuga.
-                    Si amabwiriza yemejwe yo guhinga ubu bwoko.
-                    Amakuru nyakuri azashyirwa muri SSAS amaze kugenzurwa.
-                </p>
-            </div>
+                <div class="guide-disclaimer">
+                    <span aria-hidden="true">ℹ️</span>
+
+                    <p>
+                        <strong>Icyitonderwa:</strong>
+                        {{ growing_guide.introduction }}
+                    </p>
+                </div>
+
+            {% else %}
+
+                <div class="guide-disclaimer">
+                    <span aria-hidden="true">ℹ️</span>
+
+                    <p>
+                        <strong>Icyitonderwa:</strong>
+                        Amabwiriza arambuye ntaraboneka muri sisitemu
+                        kuri ubu bwoko n'akarere katoranyijwe.
+                        Buri gihe hagomba gukoreshwa amakuru yizewe
+                        kandi yagenzuwe.
+                    </p>
+                </div>
+
+            {% endif %}
 
         </section>
 
@@ -305,9 +344,9 @@
                         Reba aho ushobora kubona ubu bwoko
                         bw'igihingwa mu karere kawe.
                     </p>
-                    
-                    
-                    <a href="{{ url_for('suppliers.supplier_varieties',variety_id=variety.variety_id) }}" class="btn btn-primary">
+
+                    <a href="{{ url_for('suppliers.supplier_varieties', variety_id=variety.variety_id, district_id=selected_district_id) if selected_district_id else url_for('suppliers.supplier_varieties', variety_id=variety.variety_id) }}"
+                       class="btn btn-primary">
                         Shaka Abatanga Imbuto →
                     </a>
 
@@ -328,7 +367,8 @@
                         ibyo wamenye ku buhinzi bw'ubu bwoko.
                     </p>
 
-                    <a href="{{ url_for('feedback.feedback',variety_id=variety.variety_id)}}" class="btn btn-secondary">
+                    <a href="{{ url_for('feedback.feedback', variety_id=variety.variety_id, district_id=selected_district_id) if selected_district_id else url_for('feedback.feedback', variety_id=variety.variety_id) }}"
+                       class="btn btn-secondary">
                         Tanga Igitekerezo →
                     </a>
 

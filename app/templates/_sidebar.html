@@ -1,0 +1,90 @@
+<!-- ==================== SHARED ADMIN SIDEBAR ==================== -->
+<aside class="management-sidebar">
+
+    <div class="sidebar-brand">
+        <div class="brand-icon">☀</div>
+
+        <div>
+            <h2>SSAS</h2>
+            <p>Admin workspace</p>
+        </div>
+    </div>
+
+    <!-- Keep the sidebar scroll container -->
+    <div class="management-scroll">
+
+        <div class="sidebar-label">MAIN MENU</div>
+
+        <nav class="management-nav">
+
+            <a href="{{ url_for('admin.admin_dashboard') }}" class="nav-link">
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </a>
+
+            <div class="sidebar-label">MANAGEMENT</div>
+
+            <a href="{{ url_for('admin.manage_crops') }}"
+                class="nav-link {% if active_section == 'crops' %}active{% endif %}">
+                <span class="nav-icon">🌱</span>
+                <span>Gucunga Ibihingwa</span>
+            </a>
+
+            
+            <a href="{{ url_for('admin.manage_district_varieties') }}"
+                class="nav-link {% if active_section == 'district_varieties' %}active{% endif %}">
+            
+                <span class="nav-icon">🗺</span>
+                <span>Guhuza Uturere n'Ubwoko</span>
+            </a>
+
+            <a href="{{ url_for('admin.manage_districts') }}"
+                class="nav-link {% if active_section == 'districts' %}active{% endif %}">
+                <span class="nav-icon">📍</span>
+                <span>Uturere</span>
+            </a>
+
+            <a href="{{ url_for('admin.manage_sectors') }}"
+                class="nav-link {% if active_section == 'sectors' %}active{% endif %}">
+                <span class="nav-icon">🗺</span>
+                <span>Imirenge</span>
+            </a>
+
+            <a href="{{ url_for('admin.manage_guides') }}"
+                class="nav-link {% if active_section == 'guides' %}active{% endif %}">
+                <span class="nav-icon">📖</span>
+                <span>Amabwiriza</span>
+            </a>
+
+            <a href="{{ url_for('admin.manage_suppliers') }}"
+                class="nav-link {% if active_section == 'suppliers' %}active{% endif %}">
+                <span class="nav-icon">🏪</span>
+                <span>Abatanga Imbuto</span>
+            </a>
+
+            <a href="{{ url_for('admin.manage_feedback') }}"
+                class="nav-link {% if active_section == 'feedback' %}active{% endif %}">
+                <span class="nav-icon">💬</span>
+                <span>Ibitekerezo</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <div class="admin-avatar">A</div>
+
+            <div class="admin-info">
+                <strong>Administrator</strong>
+                <span>SSAS Admin</span>
+            </div>
+
+            <a href="{{ url_for('admin.admin_logout') }}" class="logout-link" title="Log out">
+                ↪
+            </a>
+
+        </div>
+
+    </div>
+
+</aside>

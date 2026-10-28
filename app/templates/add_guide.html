@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS | Ongeramo Amabwiriza yo Guhinga</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_guide_step.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/management.css') }}">
+</head>
+
+<body class="management-page">
+
+    <div class="management-layout">
+
+        <!-- AKABARI K'IBUMOSO -->
+        {% include '_sidebar.html' %}
+
+        <main class="management-main">
+
+            <!-- UMUTWE WA PAJI -->
+            <header class="management-topbar">
+                <div>
+                    <p class="breadcrumb">
+                        SSAS / Imicungire / Amabwiriza yo Guhinga
+                    </p>
+
+                    <h1>Ongeramo Amabwiriza yo Guhinga</h1>
+                </div>
+
+                <div class="topbar-badge">
+                    <span class="status-dot"></span>
+                    Umwanya w'Umuyobozi
+                </div>
+            </header>
+
+            <!-- INTANGIRIRO -->
+            <section class="section-intro">
+                <div>
+                    <p class="eyebrow">AMABWIRIZA YO GUHINGA</p>
+
+                    <h2>Kora amabwiriza mashya</h2>
+
+                    <p>
+                        Hitamo akarere n'ubwoko bw'igihingwa,
+                        hanyuma wandike intangiriro y'amabwiriza yo kugihinga.
+                    </p>
+                </div>
+            </section>
+
+            <!-- FORM YO KONGERAMO AMABWIRIZA -->
+            <section class="data-card">
+
+                <div class="table-heading">
+                    <div>
+                        <h3>Amakuru y'amabwiriza mashya</h3>
+
+                        <p>
+                            Uzuza amakuru akenewe kugira ngo ukore
+                            amabwiriza mashya yo guhinga.
+                        </p>
+                    </div>
+                </div>
+
+                <form method="POST" action="{{ url_for('admin.add_guide') }}" class="guide-step-form">
+
+                    <!-- AKARERE -->
+                    <div class="form-group">
+                        <label for="district_id">
+                            Hitamo akarere
+                        </label>
+
+                        <select id="district_id" name="district_id" required>
+
+                            <option value="">
+                                -- Hitamo akarere --
+                            </option>
+
+                            {% for district in districts %}
+                            <option value="{{ district.district_id }}" {% if
+                                request.form.get('district_id')==district.district_id %}selected{% endif %}>
+                                {{ district.district_name }}
+                            </option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                    <!-- UBWOKO BW'IGIHINGWA -->
+                    <div class="form-group">
+                        <label for="variety_id">
+                            Hitamo ubwoko bw'igihingwa
+                        </label>
+
+                        <select id="variety_id" name="variety_id" required>
+
+                            <option value="">
+                                -- Hitamo ubwoko bw'igihingwa --
+                            </option>
+
+                            {% for variety in varieties %}
+                            <option value="{{ variety.variety_id }}" {% if
+                                request.form.get('variety_id')==variety.variety_id %}selected{% endif %}>
+                                {{ variety.variety_name }}
+                            </option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                    <!-- INTANGIRIRO -->
+                    <div class="form-group">
+                        <label for="introduction">
+                            Intangiriro y'amabwiriza
+                        </label>
+
+                        <textarea id="introduction" name="introduction" rows="6" required
+                            placeholder="Sobanura muri make ibikubiye muri aya mabwiriza...">{{ request.form.get('introduction', '') }}</textarea>
+                    </div>
+
+                    <!-- BUTO -->
+                    <div class="form-actions">
+                        <button type="submit" class="add-button">
+                            Bika amabwiriza
+                        </button>
+
+                        <a href="{{ url_for('admin.manage_guides') }}" class="action-placeholder">
+                            Subira inyuma
+                        </a>
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- UMUSOZO -->
+            <footer class="management-footer">
+                <p>
+                    SSAS · Guhuza ubumenyi bw'ubuhinzi n'abahinzi
+                </p>
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

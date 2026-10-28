@@ -3,11 +3,14 @@ from flask import Blueprint, render_template, request, abort
 
 from app.extensions import db
 from app.models.district import District
+from app.models.crop import Crop
 from app.models.variety import Variety
+from app.models.growing_guide import GrowingGuide
+from app.models.guide_step import GuideStep
 from app.models.district_variety import DistrictVariety
 
 
-varieties_bp = Blueprint("varieties", __name__)
+varieties_bp = Blueprint("varieties", __name__,url_prefix="/ssas")
 
 
 # ==================== 1. VARIETIES PAGE ====================
@@ -63,6 +66,7 @@ def varieties():
     )
 
 
+
 # ==================== 2. VARIETY DETAILS PAGE ====================
 @varieties_bp.route("/varieties/<variety_id>")
 def variety_detail(variety_id):
@@ -73,7 +77,54 @@ def variety_detail(variety_id):
     if variety is None:
         abort(404)
 
+    # Find the crop associated with this variety
+    crop = db.session.get(Crop, variety.crop_id)
+
+    # Get the district selected on the previous page, if provided
+    selected_district_id = request.args.get("district_id")
+    selected_district = None
+    district_variety = None
+    growing_guide = None
+    guide_steps = []
+
+    if selected_district_id:
+
+        # Check whether the selected district exists
+        selected_district = db.session.get(
+            District, selected_district_id
+        )
+
+        if selected_district is None:
+            abort(404)
+
+        # Get suitability information for this district and variety
+        district_variety = db.session.get(
+            DistrictVariety,
+            (selected_district_id, variety_id)
+        )
+
+        # Find the growing guide for this district and variety
+        growing_guide = GrowingGuide.query.filter_by(
+            district_id=selected_district_id,
+            variety_id=variety_id
+        ).first()
+
+        # Fetch the guide steps in their intended order
+        if growing_guide is not None:
+            guide_steps = GuideStep.query.filter_by(
+                guide_id=growing_guide.guide_id
+            ).order_by(
+                GuideStep.step_number
+            ).all()
+
     return render_template(
         "variety_detail.html",
-        variety=variety
+        variety=variety,
+        crop=crop,
+        selected_district=selected_district,
+        selected_district_id=selected_district_id,
+        district_variety=district_variety,
+        growing_guide=growing_guide,
+        guide_steps=guide_steps
     )
+

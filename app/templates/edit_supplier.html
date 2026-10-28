@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSAS | Hindura Utanga Imbuto</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/edit_record.css') }}">
+</head>
+
+<body class="edit-record-page">
+
+    <main class="edit-record-container">
+
+        <nav class="edit-record-breadcrumb">
+            <a href="{{ url_for('admin.manage_suppliers') }}">Abatanga imbuto</a>
+            / Hindura
+        </nav>
+
+        <section class="edit-record-card">
+
+            <header class="edit-record-header">
+                <p class="edit-record-eyebrow">Gucunga abatanga imbuto</p>
+                <h1>Hindura amakuru y'utanga imbuto</h1>
+                <p>Hindura izina, nimero ya telefoni, cyangwa umurenge akoreramo.</p>
+            </header>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+            <div class="edit-record-flash {{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endwith %}
+
+            <form class="edit-record-form" method="POST"
+                action="{{ url_for('admin.edit_supplier', supplier_id=supplier.supplier_id) }}">
+
+                <div class="edit-record-id">
+                    Nimero y'utanga imbuto: <strong>{{ supplier.supplier_id }}</strong>
+                </div>
+
+                <div class="edit-record-field">
+                    <label for="supplier_name">Izina ry'utanga imbuto</label>
+                    <input type="text" id="supplier_name" name="supplier_name" value="{{ supplier.supplier_name }}"
+                        maxlength="150" required>
+                </div>
+
+                <div class="edit-record-field">
+                    <label for="phone">Nimero ya telefoni</label>
+                    <input type="tel" id="phone" name="phone" value="{{ supplier.phone }}" maxlength="20" required>
+                </div>
+
+                <div class="edit-record-field">
+                    <label for="sector_id">Umurenge akoreramo</label>
+                    <select id="sector_id" name="sector_id" required>
+                        <option value="">-- Hitamo umurenge --</option>
+
+                        {% for sector in sectors %}
+                        <option value="{{ sector.sector_id }}" {% if sector.sector_id==supplier.sector_id %}selected{%
+                            endif %}>
+                            {{ sector.sector_name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    <small>
+                        Hitamo umurenge utanga imbuto akoreramo.
+                    </small>
+                </div>
+
+                <div class="edit-record-actions">
+                    <a class="edit-record-button secondary" href="{{ url_for('admin.manage_suppliers') }}">
+                        Subira inyuma
+                    </a>
+
+                    <button class="edit-record-button primary" type="submit">
+                        Bika impinduka
+                    </button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+</body>
+
+</html>

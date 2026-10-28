@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS | Ongeramo Intambwe yo Guhinga</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_guide_step.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/management.css') }}">
+</head>
+
+<body class="management-page">
+
+    <div class="management-layout">
+
+        <!-- ==================== AKABARI K'IBUMOSO ==================== -->
+        {% include '_sidebar.html' %}
+
+        <main class="management-main">
+
+            <header class="management-topbar">
+                <div>
+                    <p class="breadcrumb">SSAS / Imicungire / Amabwiriza yo Guhinga</p>
+                    <h1>Ongeramo Intambwe yo Guhinga</h1>
+                </div>
+
+                <div class="topbar-badge">
+                    <span class="status-dot"></span>
+                    Umwanya w'Umuyobozi
+                </div>
+            </header>
+
+            <section class="section-intro">
+                <div>
+                    <p class="eyebrow">AMABWIRIZA YO GUHINGA</p>
+                    <h2>Ongeramo amabwiriza mashya</h2>
+                    <p>
+                        Ongeramo intambwe nshya mu mabwiriza yo guhinga wahisemo.
+                    </p>
+                </div>
+            </section>
+
+            <section class="data-card">
+
+                <div class="table-heading">
+                    <div>
+                        <h3>Amabwiriza #{{ guide.guide_id }}</h3>
+                        <p>{{ guide.introduction }}</p>
+                    </div>
+                </div>
+
+                <form method="POST" action="{{ url_for('admin.add_guide_step', guide_id=guide.guide_id) }}"
+                    class="guide-step-form">
+
+                    <div class="form-group">
+                        <label for="step_number">Nomero y'intambwe</label>
+                        <input type="number" id="step_number" name="step_number" min="1" required
+                            placeholder="Urugero: 1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title">Umutwe w'intambwe</label>
+                        <input type="text" id="title" name="title" maxlength="150" required
+                            placeholder="Urugero: Tegura ubutaka">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="instructions">Amabwiriza arambuye</label>
+                        <textarea id="instructions" name="instructions" rows="6" required
+                            placeholder="Sobanura icyo umuhinzi agomba gukora..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="add-button">
+                            Bika intambwe
+                        </button>
+
+                        <a href="{{ url_for('admin.manage_guides') }}" class="action-placeholder">
+                            Subira inyuma
+                        </a>
+                    </div>
+
+                </form>
+
+            </section>
+
+            <footer class="management-footer">
+                <p>SSAS · Guhuza ubumenyi bw'ubuhinzi n'abahinzi</p>
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

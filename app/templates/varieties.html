@@ -149,7 +149,7 @@
 
                     <p class="form-note">
                         <span aria-hidden="true">ℹ️</span>
-                        Amakuru azagaragara bitewe n'akarere
+                        Amakuru agaragara bitewe n'akarere
                         wahisemo n'ubwoko bubitse muri SSAS.
                     </p>
 
@@ -220,14 +220,11 @@
 
                             {% endif %}
 
-                            <a href="{{ url_for(
-                                                'varieties.variety_detail',
-                                                variety_id=variety.variety_id
-                                            ) }}" class="btn btn-card">
-
+                            <a href="{{ url_for('varieties.variety_detail',
+                                                variety_id=variety.variety_id,
+                                                district_id=selected_district_id) }}" class="btn btn-card">
                                 Reba amakuru →
-
-                            </a>
+                            </a>                            
 
                         </div>
 

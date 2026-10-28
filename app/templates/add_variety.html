@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SSAS | Ongeramo Ubwoko bw'Igihingwa</title>
+
+    <!-- ==================== CSS FILES ==================== -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_guide_step.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/management.css') }}">
+</head>
+
+<body class="management-page">
+
+    <div class="management-layout">
+
+        <!-- ==================== SIDEBAR ==================== -->
+        {% set active_section = 'varieties' %}
+        {% include '_sidebar.html' %}
+
+        <main class="management-main">
+
+            <!-- ==================== PAGE HEADER ==================== -->
+            <header class="management-topbar">
+                <div>
+                    <p class="breadcrumb">
+                        SSAS / Imicungire / Ubwoko bw'Ibihingwa
+                    </p>
+
+                    <h1>Ongeramo Ubwoko bw'Igihingwa</h1>
+                </div>
+
+                <div class="topbar-badge">
+                    <span class="status-dot"></span>
+                    Umwanya w'Umuyobozi
+                </div>
+            </header>
+
+            <!-- ==================== INTRODUCTION ==================== -->
+            <section class="section-intro">
+                <div>
+                    <p class="eyebrow">UBWOKO BW'IBIHINGWA</p>
+
+                    <h2>Andikisha ubwoko bushya</h2>
+
+                    <p>
+                        Hitamo igihingwa ubu bwoko bufitanye isano na cyo,
+                        wandike izina n'ibisobanuro byabwo.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== VARIETY FORM ==================== -->
+            <section class="data-card">
+
+                <div class="table-heading">
+                    <div>
+                        <h3>Amakuru y'ubwoko bw'igihingwa</h3>
+
+                        <p>
+                            Uzuza amakuru asabwa kugira ngo ubike ubu bwoko.
+                        </p>
+                    </div>
+                </div>
+
+                <form method="POST" action="{{ url_for('admin.add_variety') }}" class="guide-step-form">
+
+                    <!-- VARIETY ID -->
+                    <div class="form-group">
+                        <label for="variety_id">
+                            Nimero y'ubwoko
+                        </label>
+
+                        <input type="text" id="variety_id" name="variety_id" maxlength="10"
+                            value="{{ request.form.get('variety_id', '') }}" required placeholder="Urugero: V001">
+
+                        <small>
+                            Koresha nimero yihariye itarakoreshwa
+                            ku bundi bwoko.
+                        </small>
+                    </div>
+
+                    <!-- CROP SELECTION -->
+                    <div class="form-group">
+                        <label for="crop_id">
+                            Hitamo igihingwa
+                        </label>
+
+                        <select id="crop_id" name="crop_id" required>
+                            <option value="">
+                                -- Hitamo igihingwa --
+                            </option>
+
+                            {% for crop in crops %}
+                            <option value="{{ crop.crop_id }}" {% if request.form.get('crop_id')==crop.crop_id
+                                %}selected{% endif %}>
+                                {{ crop.crop_name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- VARIETY NAME -->
+                    <div class="form-group">
+                        <label for="variety_name">
+                            Izina ry'ubwoko
+                        </label>
+
+                        <input type="text" id="variety_name" name="variety_name" maxlength="150"
+                            value="{{ request.form.get('variety_name', '') }}" required
+                            placeholder="Andika izina ry'ubwoko">
+                    </div>
+
+                    <!-- DESCRIPTION -->
+                    <div class="form-group">
+                        <label for="description">
+                            Ibisobanuro (si ngombwa)
+                        </label>
+
+                        <textarea id="description" name="description" rows="5"
+                            placeholder="Sobanura muri make ubu bwoko bw'igihingwa...">{{ request.form.get('description', '') }}</textarea>
+                    </div>
+
+                    <!-- FORM ACTIONS -->
+                    <div class="form-actions">
+                        <button type="submit" class="add-button">
+                            Bika ubwoko
+                        </button>
+
+                        <a href="{{ url_for('admin.manage_varieties') }}" class="action-placeholder">
+                            Subira inyuma
+                        </a>
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- ==================== FOOTER ==================== -->
+            <footer class="management-footer">
+                <p>
+                    SSAS · Guhuza ubumenyi bw'ubuhinzi n'abahinzi
+                </p>
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

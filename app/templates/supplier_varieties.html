@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="rw">
 
@@ -21,7 +20,6 @@
     <header class="site-header">
         <div class="container navbar">
 
-            <!-- Website logo -->
             <a href="{{ url_for('home.home') }}" class="brand">
                 <span class="brand-icon">🌱</span>
 
@@ -31,7 +29,6 @@
                 </span>
             </a>
 
-            <!-- Main navigation -->
             <nav class="nav-links" aria-label="Ibyiciro by'urubuga">
                 <a href="{{ url_for('home.home') }}">Ahabanza</a>
                 <a href="{{ url_for('varieties.varieties') }}">Ibihingwa</a>
@@ -64,7 +61,7 @@
         </section>
 
 
-        <!-- ==================== 3. SUPPLIER RESULTS ==================== -->
+        <!-- ==================== 3. SUPPLIER SEARCH ==================== -->
         <section class="section supplier-section">
             <div class="container">
 
@@ -73,8 +70,8 @@
                         <h2>Abatanga imbuto z'ubu bwoko</h2>
 
                         <p>
-                            Hitamo aho ushobora gushakira imbuto
-                            zijyanye n'ubwoko wahisemo.
+                            Hitamo akarere n'umurenge kugira ngo ubone
+                            abatanga ubu bwoko bw'imbuto hafi yawe.
                         </p>
                     </div>
                 </div>
@@ -88,19 +85,78 @@
                         <h3>Ubwoko wahisemo</h3>
 
                         <p>
-                            Nimero y'ubwoko:
-                            <strong>{{ variety_id }}</strong>
+                            Igihingwa:
+                            <strong>{{ crop.crop_name if crop else 'Ntabwo kizwi' }}</strong>
                         </p>
+                        
+                        <p>
+                            Ubwoko:
+                            <strong>{{ variety.variety_name }}</strong>
+                        </p>
+                        
+                        <p>
+                            Nimero y'ubwoko:
+                            <strong>{{ variety.variety_id }}</strong>
+                        </p>
+
                     </div>
                 </div>
 
 
-                <!-- Supplier cards will be populated from the database -->
+                <!-- District and sector selection -->
+                <form method="GET" action="{{ url_for('suppliers.supplier_varieties', variety_id=variety_id) }}">
+
+                    <div>
+                        <label for="district_id">Hitamo akarere</label>
+
+                        <select id="district_id" name="district_id" required onchange="this.form.submit()">
+
+                            <option value="">-- Hitamo akarere --</option>
+
+                            {% for district in districts %}
+                            <option value="{{ district.district_id }}" {% if district.district_id==selected_district_id
+                                %}selected{% endif %}>
+                                {{ district.district_name }}
+                            </option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="sector_id">Hitamo umurenge</label>
+
+                        <select id="sector_id" name="sector_id" {% if not selected_district_id %}disabled{% endif %}
+                            required>
+
+                            <option value="">-- Hitamo umurenge --</option>
+
+                            {% for sector in sectors %}
+                            <option value="{{ sector.sector_id }}" {% if sector.sector_id==selected_sector_id
+                                %}selected{% endif %}>
+                                {{ sector.sector_name }}
+                            </option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Shaka abatanga imbuto
+                    </button>
+
+                </form>
+
+
+                <!-- ==================== 4. SUPPLIER RESULTS ==================== -->
+
+                {% if selected_sector_id %}
+
                 {% if suppliers %}
 
                 <div class="supplier-grid">
 
-                    {% for supplier in suppliers %}
+                    {% for supplier, availability, sector_name in suppliers %}
 
                     <article class="supplier-card">
 
@@ -113,8 +169,13 @@
                             <h3>{{ supplier.supplier_name }}</h3>
 
                             <p>
-                                <strong>Aho aherereye:</strong>
-                                {{ supplier.sector.sector_name }}
+                                <strong>Akarere:</strong>
+                                {{ selected_district.district_name }}
+                            </p>
+
+                            <p>
+                                <strong>Umurenge:</strong>
+                                {{ sector_name }}
                             </p>
 
                             <p>
@@ -122,7 +183,7 @@
                                 {{ supplier.phone }}
                             </p>
 
-                            {% if supplier.is_available %}
+                            {% if availability %}
                             <span class="availability available">
                                 Imbuto zirahari
                             </span>
@@ -134,7 +195,8 @@
 
                             <a href="{{ url_for(
                                             'feedback.feedback',
-                                            variety_id=variety_id
+                                            variety_id=variety_id,
+                                            district_id=selected_district_id
                                         ) }}" class="btn btn-card">
                                 Tanga igitekerezo
                             </a>
@@ -149,17 +211,33 @@
 
                 {% else %}
 
-                <!-- Message displayed when no supplier data is available -->
                 <div class="empty-state">
 
                     <span class="empty-icon" aria-hidden="true">🔎</span>
 
-                    <h3>Nta mutanga mbuto uraboneka</h3>
+                    <h3>Utanga imbuto ntaraboneka</h3>
 
                     <p>
-                        Nta makuru y'abatanga imbuto ahari kuri ubu bwoko
-                        cyangwa ayo makuru ntarashyirwamo.
-                        Ongera ugerageze nyuma.
+                        Nta utanga imbuto uri muri uyu murenge wanditse
+                        ko afite ubu bwoko bw'imbuto.
+                        Gerageza guhitamo undi murenge.
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+                {% else %}
+
+                <div class="empty-state">
+
+                    <span class="empty-icon" aria-hidden="true">📍</span>
+
+                    <h3>Hitamo aho ushakira imbuto</h3>
+
+                    <p>
+                        Banza uhitemo akarere n'umurenge kugira ngo
+                        ubone abatanga ubu bwoko bw'imbuto.
                     </p>
 
                 </div>
@@ -170,8 +248,15 @@
                 <!-- Return navigation -->
                 <div class="supplier-actions">
 
-                    <a href="{{ url_for('varieties.varieties') }}" class="btn btn-outline">
-                        ← Subira ku bwoko bw'imbuto
+                    <a href="{{ url_for(
+                        'varieties.variety_detail',
+                        variety_id=variety_id,
+                        district_id=selected_district_id
+                    ) if selected_district_id else url_for(
+                        'varieties.variety_detail',
+                        variety_id=variety_id
+                    ) }}" class="btn btn-outline">
+                        ← Subira ku bisobanuro by'ubu bwoko
                     </a>
 
                     <a href="{{ url_for('home.home') }}" class="text-link">
@@ -186,7 +271,7 @@
     </main>
 
 
-    <!-- ==================== 4. FOOTER ==================== -->
+    <!-- ==================== 5. FOOTER ==================== -->
     <footer class="site-footer">
         <div class="container footer-content">
 
@@ -209,6 +294,16 @@
 
         </div>
     </footer>
+
+
+    <!-- Submit the search when the farmer selects a sector -->
+    <script>
+        document.getElementById("sector_id").addEventListener("change", function () {
+            if (this.value) {
+                this.form.submit();
+            }
+        });
+    </script>
 
 </body>
 

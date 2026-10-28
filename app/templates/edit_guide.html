@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="rw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSAS | Hindura Amabwiriza</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/edit_record.css') }}">
+</head>
+
+<body class="edit-record-page">
+
+    <main class="edit-record-container">
+
+        <nav class="edit-record-breadcrumb">
+            <a href="{{ url_for('admin.manage_guides') }}">Amabwiriza yo guhinga</a>
+            / Hindura
+        </nav>
+
+        <section class="edit-record-card">
+
+            <header class="edit-record-header">
+                <p class="edit-record-eyebrow">Gucunga amabwiriza yo guhinga</p>
+                <h1>Hindura amabwiriza</h1>
+                <p>Hindura akarere, ubwoko bw'igihingwa, cyangwa intangiriro y'amabwiriza.</p>
+            </header>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+            <div class="edit-record-flash {{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endwith %}
+
+            <form class="edit-record-form" method="POST"
+                action="{{ url_for('admin.edit_guide', guide_id=guide.guide_id) }}">
+
+                <div class="edit-record-id">
+                    Nimero y'amabwiriza: <strong>{{ guide.guide_id }}</strong>
+                </div>
+
+                <div class="edit-record-field">
+                    <label for="district_id">Akarere</label>
+                    <select id="district_id" name="district_id" required>
+                        <option value="">-- Hitamo akarere --</option>
+
+                        {% for district in districts %}
+                        <option value="{{ district.district_id }}" {% if district.district_id==guide.district_id
+                            %}selected{% endif %}>
+                            {{ district.district_name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="edit-record-field">
+                    <label for="variety_id">Ubwoko bw'igihingwa</label>
+                    <select id="variety_id" name="variety_id" required>
+                        <option value="">-- Hitamo ubwoko --</option>
+
+                        {% for variety in varieties %}
+                        <option value="{{ variety.variety_id }}" {% if variety.variety_id==guide.variety_id %}selected{%
+                            endif %}>
+                            {{ variety.variety_name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="edit-record-field">
+                    <label for="introduction">Intangiriro y'amabwiriza</label>
+                    <textarea id="introduction" name="introduction" required>{{ guide.introduction }}</textarea>
+                </div>
+
+                <div class="edit-record-actions">
+                    <a class="edit-record-button secondary" href="{{ url_for('admin.manage_guides') }}">
+                        Subira inyuma
+                    </a>
+
+                    <button class="edit-record-button primary" type="submit">
+                        Bika impinduka
+                    </button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+</body>
+
+</html>
